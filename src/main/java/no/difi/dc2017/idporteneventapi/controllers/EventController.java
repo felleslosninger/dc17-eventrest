@@ -21,7 +21,7 @@ public class EventController {
     @RequestMapping(value = "/addNewEvent.html", method = RequestMethod.POST)
     public String newEvent(Event event){
         eventData.save(event);
-        return ("redirect:/list.html");
+        return ("redirect:/listEvents.html");
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
