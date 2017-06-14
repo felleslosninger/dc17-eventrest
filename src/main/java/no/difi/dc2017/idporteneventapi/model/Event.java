@@ -53,6 +53,10 @@ public class Event {
         return st.toString();
     }
 
+    public long getId() {
+        return this.id;
+    }
+
     public int getYear() {
         return year;
     }
