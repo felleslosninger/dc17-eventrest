@@ -12,7 +12,7 @@ public class EventData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private long id;
-    private int eventId;
+    private long eventId;
     private int eventDataType;
     private String value;
 
@@ -20,7 +20,7 @@ public class EventData {
         return id;
     }
 
-    public int getEventId() {
+    public long getEventId() {
         return eventId;
     }
 
