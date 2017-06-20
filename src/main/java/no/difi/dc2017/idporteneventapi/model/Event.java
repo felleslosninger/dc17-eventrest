@@ -112,57 +112,6 @@ public class Event {
         return reqAuthLevel;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
-
-    public void setSecond(int second) {
-        this.second = second;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public void setLogType(int logType) {
-        this.logType = logType;
-    }
-
-    public void setAuthType(int authType) {
-        this.authType = authType;
-    }
-
-    public void setIssuer(String issuer) {
-        this.issuer = issuer;
-    }
-
-    public void setOnBehalfOf(String onBehalfOf) {
-        this.onBehalfOf = onBehalfOf;
-    }
-
-    public void setReqForceAuth(boolean reqForceAuth) {
-        this.reqForceAuth = reqForceAuth;
-    }
-
-    public void setReqAuthLevel(int reqAuthLevel) {
-        this.reqAuthLevel = reqAuthLevel;
-    }
 
     @Override
     public String toString() {

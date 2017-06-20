@@ -1,0 +1,69 @@
+package no.difi.dc2017.idporteneventapi.model;
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class SnapshotStatHour {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    private long id;
+    private String reportType;
+    private int reportLine;
+    private String reportLineText;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private String issuer;
+    private String onBehalfOf;
+    private int cnt;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getReportType() {
+        return reportType;
+    }
+
+    public int getReportLine() {
+        return reportLine;
+    }
+
+    public String getReportLineText() {
+        return reportLineText;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public String getOnBehalfOf() {
+        return onBehalfOf;
+    }
+
+    public int getCnt() {
+        return cnt;
+    }
+}
