@@ -84,7 +84,7 @@ public class Event {
         return st.toString();
     }
 
-    public DateTime dateAndTimeToDateTime() {
+    public DateTime getDateAndTime() {
         String myDate = getDateTimeString();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         java.util.Date utilDate = new java.util.Date();
