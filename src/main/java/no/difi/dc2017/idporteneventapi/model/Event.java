@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.DateTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,52 +41,65 @@ public class Event {
      *
      * @return Date as a string in format dd.mm.yyyy
      */
-    public String getDate(){
+    public Date getDate() throws ParseException{
         StringBuilder st = new StringBuilder();
-        st.append(getDay());
-        st.append('.');
-        st.append(getMonth());
-        st.append('.');
         st.append(getYear());
-        return st.toString();
+        st.append('-');
+        st.append(getMonth());
+        st.append('-');
+        st.append(getDay());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(st.toString());
+        return date;
     }
 
     /**
      *
      * @return Time as a string in format hh.mm.ss
      */
-    public String getTime(){
+    public Date getTime() throws ParseException {
         StringBuilder st = new StringBuilder();
         st.append(getHour());
         st.append(':');
         st.append(getMinute());
         st.append(':');
         st.append(getSecond());
-        return st.toString();
+
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        Date time = format.parse(st.toString());
+        java.sql.Time ppstime = new java.sql.Time(time.getTime());
+        return ppstime;
     }
 
-    private String getDateTime(){
+    public String getDateTimeString(){
         StringBuilder st = new StringBuilder();
         st.append(getYear());
-        st.append("-");
+        st.append('-');
         st.append(getMonth());
-        st.append("-");
+        st.append('-');
         st.append(getDay());
         st.append(" ");
         st.append(getHour());
-        st.append(":");
+        st.append(':');
         st.append(getMinute());
-        st.append(":");
+        st.append(':');
         st.append(getSecond());
         return st.toString();
     }
 
-    public String getSimpleDate() throws ParseException {
-        String pattern = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        Date date = sdf.parse(getDateTime());
+    public DateTime getDateAndTime() {
+        String myDate = getDateTimeString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date utilDate = new java.util.Date();
+        try {
+            utilDate = sdf.parse(myDate);
+        } catch (ParseException pe){
+            pe.printStackTrace();
+        }
+        DateTime dateTime = new DateTime(utilDate);
 
-        return sdf.format(date);
+        return dateTime;
     }
 
     public long getId() {
@@ -140,57 +158,6 @@ public class Event {
         return reqAuthLevel;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
-    }
-
-    public void setSecond(int second) {
-        this.second = second;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public void setLogType(int logType) {
-        this.logType = logType;
-    }
-
-    public void setAuthType(int authType) {
-        this.authType = authType;
-    }
-
-    public void setIssuer(String issuer) {
-        this.issuer = issuer;
-    }
-
-    public void setOnBehalfOf(String onBehalfOf) {
-        this.onBehalfOf = onBehalfOf;
-    }
-
-    public void setReqForceAuth(boolean reqForceAuth) {
-        this.reqForceAuth = reqForceAuth;
-    }
-
-    public void setReqAuthLevel(int reqAuthLevel) {
-        this.reqAuthLevel = reqAuthLevel;
-    }
 
     @Override
     public String toString() {
