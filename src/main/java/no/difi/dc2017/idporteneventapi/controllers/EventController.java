@@ -1,26 +1,26 @@
 package no.difi.dc2017.idporteneventapi.controllers;
 
+import java.util.Collection;
 import java.util.List;
 
+import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
 import no.difi.dc2017.idporteneventapi.model.Event;
+import no.difi.dc2017.idporteneventapi.model.StatYear;
 
 @RestController
 public class EventController {
 
     @Autowired
     private EventRepository eventData;
-
-    @RequestMapping(value = "/addNewEvent.html", method = RequestMethod.POST)
-    public String newEvent(Event event){
-        eventData.save(event);
-        return ("redirect:/listEvents.html");
-    }
+    @Autowired
+    private StatYearRepository statYearData;
 
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
@@ -28,22 +28,36 @@ public class EventController {
         return ev;
     }
 
-    @RequestMapping(value = "/addNewEvent", method = RequestMethod.GET)
-    public ModelAndView addNewEvent(){
-        Event ev = new Event();
-        return new ModelAndView("newEvent", "form", ev);
-    }
-
     @RequestMapping(value = "/events" ,method = RequestMethod.GET)
     public List<Event> events(){
         return eventData.findAll();
     }
 
-    /*
-    @RequestMapping(value = "/listEvents.html" ,method = RequestMethod.GET)
-    public ModelAndView events(){
-        List<Event> allEvents = eventData.findAll();
-        return new ModelAndView("allEvents", "events", allEvents);
+    @RequestMapping(value = "/statyear/{id}", method = RequestMethod.GET)
+    public StatYear statYear(@PathVariable long id){
+        StatYear sY = statYearData.findOne(id);
+        return sY;
     }
-    */
+
+    @RequestMapping(value = "/statyearSize", method = RequestMethod.GET)
+    public String statyearSize(){
+        return String.valueOf(eventData.count());
+    }
+
+    @RequestMapping(value = "/eventBySsn/{ssn}")
+    public Collection<Event> eventBySsn(@PathVariable String ssn){
+        return eventData.findFirst10BySsnOrderByIdDesc(ssn);
+    }
+
+    @RequestMapping(value = "statYearByIssuer/{issuer}")
+    public Collection<StatYear> statYearByIssuer(@PathVariable String issuer){
+        return statYearData.findByIssuer(issuer);
+    }
+
+    @RequestMapping(value = "getLatestEvents", method = RequestMethod.GET)
+    public Page<Event> getLatestEvents(){
+        PageRequest limit = new PageRequest(1,10 , Sort.Direction.DESC,"hour");
+        Page<Event> evList = eventData.findAll(limit);
+        return evList;
+    }
 }

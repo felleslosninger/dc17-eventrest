@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Entity
 public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +58,30 @@ public class Event {
         st.append(':');
         st.append(getSecond());
         return st.toString();
+    }
+
+    private String getDateTime(){
+        StringBuilder st = new StringBuilder();
+        st.append(getYear());
+        st.append("-");
+        st.append(getMonth());
+        st.append("-");
+        st.append(getDay());
+        st.append(" ");
+        st.append(getHour());
+        st.append(":");
+        st.append(getMinute());
+        st.append(":");
+        st.append(getSecond());
+        return st.toString();
+    }
+
+    public String getSimpleDate() throws ParseException {
+        String pattern = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        Date date = sdf.parse(getDateTime());
+
+        return sdf.format(date);
     }
 
     public long getId() {
