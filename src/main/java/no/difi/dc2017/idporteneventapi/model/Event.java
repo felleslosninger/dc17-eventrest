@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.joda.time.DateTime;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class Event {
@@ -32,28 +37,65 @@ public class Event {
      *
      * @return Date as a string in format dd.mm.yyyy
      */
-    public String getDate(){
+    public Date getDate() throws ParseException{
         StringBuilder st = new StringBuilder();
-        st.append(getDay());
-        st.append('.');
-        st.append(getMonth());
-        st.append('.');
         st.append(getYear());
-        return st.toString();
+        st.append('-');
+        st.append(getMonth());
+        st.append('-');
+        st.append(getDay());
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(st.toString());
+        return date;
     }
 
     /**
      *
      * @return Time as a string in format hh.mm.ss
      */
-    public String getTime(){
+    public Date getTime() throws ParseException {
         StringBuilder st = new StringBuilder();
         st.append(getHour());
         st.append(':');
         st.append(getMinute());
         st.append(':');
         st.append(getSecond());
+
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss");
+        Date time = format.parse(st.toString());
+        java.sql.Time ppstime = new java.sql.Time(time.getTime());
+        return ppstime;
+    }
+
+    public String getDateTimeString(){
+        StringBuilder st = new StringBuilder();
+        st.append(getYear());
+        st.append('-');
+        st.append(getMonth());
+        st.append('-');
+        st.append(getDay());
+        st.append(" ");
+        st.append(getHour());
+        st.append(':');
+        st.append(getMinute());
+        st.append(':');
+        st.append(getSecond());
         return st.toString();
+    }
+
+    public DateTime dateAndTimeToDateTime() {
+        String myDate = getDateTimeString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date utilDate = new java.util.Date();
+        try {
+            utilDate = sdf.parse(myDate);
+        } catch (ParseException pe){
+            pe.printStackTrace();
+        }
+        DateTime dateTime = new DateTime(utilDate);
+
+        return dateTime;
     }
 
     public long getId() {
