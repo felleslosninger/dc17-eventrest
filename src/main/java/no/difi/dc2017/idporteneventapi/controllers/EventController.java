@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
+import no.difi.dc2017.idporteneventapi.data.LogTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
 import no.difi.dc2017.idporteneventapi.model.AuthType;
+import no.difi.dc2017.idporteneventapi.model.LogType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,9 @@ public class EventController {
     private StatYearRepository statYearData;
     @Autowired
     private AuthTypeRepository authTypeData;
+    @Autowired
+    private LogTypeRepository logTypeData;
+
 
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
@@ -70,11 +75,16 @@ public class EventController {
     public AuthType getAuthTypeById(@PathVariable long id){
         return authTypeData.findOne(id);
     }
-
+    
     @RequestMapping(value = "getMostUsed", method = RequestMethod.GET)
     public List<Object[]> getMostUsed(){
         System.out.println(eventData.getMostUsed());
         return eventData.getMostUsed();
     }
+    @RequestMapping(value = "getLogTypeById/{id}", method = RequestMethod.GET)
+    public LogType getLogTypeById(@PathVariable long id){
+        return logTypeData.findOne(id);
+    }
+
 
 }
