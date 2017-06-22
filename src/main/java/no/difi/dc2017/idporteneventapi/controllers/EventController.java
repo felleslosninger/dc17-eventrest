@@ -2,6 +2,7 @@ package no.difi.dc2017.idporteneventapi.controllers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
@@ -70,5 +71,10 @@ public class EventController {
         return authTypeData.findOne(id);
     }
 
+    @RequestMapping(value = "getMostUsed", method = RequestMethod.GET)
+    public List<Object[]> getMostUsed(){
+        System.out.println(eventData.getMostUsed());
+        return eventData.getMostUsed();
+    }
 
 }
