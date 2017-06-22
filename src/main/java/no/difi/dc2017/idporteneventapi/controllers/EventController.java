@@ -3,7 +3,9 @@ package no.difi.dc2017.idporteneventapi.controllers;
 import java.util.Collection;
 import java.util.List;
 
+import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
+import no.difi.dc2017.idporteneventapi.model.AuthType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +23,8 @@ public class EventController {
     private EventRepository eventData;
     @Autowired
     private StatYearRepository statYearData;
+    @Autowired
+    private AuthTypeRepository authTypeData;
 
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
@@ -60,4 +64,11 @@ public class EventController {
         Page<Event> evList = eventData.findAll(limit);
         return evList;
     }
+
+    @RequestMapping(value = "getAuthTypeById/{id}", method = RequestMethod.GET)
+    public AuthType getAuthTypeById(@PathVariable long id){
+        return authTypeData.findOne(id);
+    }
+
+
 }
