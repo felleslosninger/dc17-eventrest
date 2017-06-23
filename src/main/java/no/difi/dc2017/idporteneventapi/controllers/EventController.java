@@ -1,5 +1,6 @@
 package no.difi.dc2017.idporteneventapi.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +8,8 @@ import java.util.Optional;
 import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.LogTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
-import no.difi.dc2017.idporteneventapi.model.AuthType;
-import no.difi.dc2017.idporteneventapi.model.LogType;
+import no.difi.dc2017.idporteneventapi.model.*;
+import no.difi.dc2017.idporteneventapi.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,12 +17,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
-import no.difi.dc2017.idporteneventapi.model.Event;
-import no.difi.dc2017.idporteneventapi.model.StatYear;
 
 @RestController
 public class EventController {
 
+    @Autowired
+    private EventService eventService;
     @Autowired
     private EventRepository eventData;
     @Autowired
@@ -30,6 +31,7 @@ public class EventController {
     private AuthTypeRepository authTypeData;
     @Autowired
     private LogTypeRepository logTypeData;
+
 
 
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
@@ -93,14 +95,12 @@ public class EventController {
 
     @RequestMapping(value = "isReserved/{ssn}",method = RequestMethod.GET)
     public boolean isReserved(@PathVariable String ssn){
-        List<Event> events = eventData.isReserved(ssn);
+        return eventService.isReserved(ssn);
+    }
 
-        if(events.size()>0){
-            if(events.get(0).getLogType() == 515){
-                return true;
-            }
-        }
-        return false;
+    @RequestMapping(value = "getUsedServices/{ssn}", method = RequestMethod.GET)
+    public List<ServiceData> getUserServices(@PathVariable String ssn){
+        return eventService.getUsedServices(ssn);
     }
 
 }
