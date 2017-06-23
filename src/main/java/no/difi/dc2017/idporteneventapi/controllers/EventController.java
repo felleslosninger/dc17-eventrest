@@ -75,11 +75,17 @@ public class EventController {
     public AuthType getAuthTypeById(@PathVariable long id){
         return authTypeData.findOne(id);
     }
+
+    @RequestMapping(value = "getAllAuthTypes", method = RequestMethod.GET)
+    public List<AuthType> getAllAuthTypes(){
+        return authTypeData.findAll();
+    }
     
     @RequestMapping(value = "getMostUsedId/{ssn}", method = RequestMethod.GET)
     public List<Object[]> getMostUsedId(@PathVariable String ssn){
         return eventData.getMostUsedId(ssn);
     }
+
     @RequestMapping(value = "getLogTypeById/{id}", method = RequestMethod.GET)
     public LogType getLogTypeById(@PathVariable long id){
         return logTypeData.findOne(id);
