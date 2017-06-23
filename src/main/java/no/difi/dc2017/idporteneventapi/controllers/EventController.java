@@ -91,5 +91,16 @@ public class EventController {
         return logTypeData.findOne(id);
     }
 
+    @RequestMapping(value = "isReserved/{ssn}",method = RequestMethod.GET)
+    public boolean isReserved(@PathVariable String ssn){
+        List<Event> events = eventData.isReserved(ssn);
+
+        if(events.size()>0){
+            if(events.get(0).getLogType() == 515){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
