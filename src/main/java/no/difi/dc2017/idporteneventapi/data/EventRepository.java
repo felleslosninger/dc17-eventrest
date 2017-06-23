@@ -16,7 +16,7 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 
     @Modifying
     //@Query("select auth_type.value, count(auth_type.id) from auth_type inner join (select * from event where ssn = 01015700269 limit 50000) as ev on auth_type.id = ev.auth_type group by auth_type.id")
-    @Query(value = "select auth_type.value, count(auth_type.id) from (auth_type inner join (select auth_type from event where ssn = 01015700269 limit 50000) as ev on ev.auth_type = auth_type.id) group by auth_type.id", nativeQuery = true)
-    List<Object[]> getMostUsed();
+    @Query(value = "select auth_type.value, count(auth_type.id) from (auth_type inner join (select auth_type from event where ssn = ? limit 50000) as ev on ev.auth_type = auth_type.id) group by auth_type.id", nativeQuery = true)
+    List<Object[]> getMostUsedId(String ssn);
 
 }
