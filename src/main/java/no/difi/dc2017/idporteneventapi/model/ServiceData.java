@@ -14,7 +14,16 @@ public class ServiceData {
         this.isUsed = isUsed;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+
     public String getDescription() {
+
         return description;
     }
 

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Created by camp-oob on 22.06.2017.
@@ -24,18 +26,28 @@ public class EventService {
     private EventController eventController;
 
     public List<ServiceData> getUsedServices(String ssn) {
-        List<Event> events = eventData.getUsedServices(ssn);
 
+        List<Event> events = eventData.getUsedServices(ssn);
+        List<Integer> ids = Arrays.asList(51,510,605);
         ArrayList<ServiceData> data = new ArrayList<>();
 
+        for(int i : ids){
+            LogType logType = eventController.getLogTypeById(i);
+            data.add(new ServiceData(logType.getDescription(), false));
+        }
+
         for(Event ev: events){
-            LogType logType = eventController.getLogTypeById(ev.getLogType());
-            ServiceData sD = new ServiceData(logType.getDescription(), true);
-            data.add(sD);
+            boolean isUsed = false;
+            int logType = ev.getLogType();
+            if(ids.contains(logType)){
+                data.get(ids.indexOf(logType)).setUsed(true);
+                System.out.print("hello");
+            }
         }
 
         return data;
     }
+
 
     public boolean isReserved(String ssn){
         List<Event> events = eventData.isReserved(ssn);
