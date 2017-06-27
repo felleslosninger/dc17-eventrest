@@ -2,6 +2,7 @@ package no.difi.dc2017.idporteneventapi.service;
 
 import no.difi.dc2017.idporteneventapi.controllers.EventController;
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
+import no.difi.dc2017.idporteneventapi.model.ActivityData;
 import no.difi.dc2017.idporteneventapi.model.Event;
 import no.difi.dc2017.idporteneventapi.model.LogType;
 import no.difi.dc2017.idporteneventapi.model.ServiceData;
@@ -58,5 +59,18 @@ public class EventService {
             }
         }
         return false;
+    }
+
+    public List<ActivityData> getRecentActivity(String ssn){
+        List<Event> events = eventData.getRecentActivity(ssn);
+
+        ArrayList<ActivityData> activityList = new ArrayList<>();
+
+        for(Event event : events){
+            String authType = eventController.getAuthTypeById(event.getAuthType()).getValue();
+            activityList.add(new ActivityData(event.getDateTimeString(),authType,event.getIssuer()));
+        }
+
+        return activityList;
     }
 }

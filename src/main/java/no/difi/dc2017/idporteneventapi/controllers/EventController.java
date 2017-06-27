@@ -103,4 +103,9 @@ public class EventController {
         return eventService.getUsedServices(ssn);
     }
 
+    @RequestMapping(value = "getRecentActivity/{ssn}", method = RequestMethod.GET)
+    public List<ActivityData> getRecentActivity(@PathVariable String ssn) {
+        return eventService.getRecentActivity(ssn);
+    }
+
 }
