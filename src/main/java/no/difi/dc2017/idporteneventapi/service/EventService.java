@@ -61,8 +61,8 @@ public class EventService {
         return false;
     }
 
-    public List<ActivityData> getRecentActivity(String ssn){
-        List<Event> events = eventData.getRecentActivity(ssn);
+    public List<ActivityData> getRecentUserActivity(String ssn){
+        List<Event> events = eventData.getRecentUserActivity(ssn);
 
         ArrayList<ActivityData> activityList = new ArrayList<>();
 
@@ -71,6 +71,18 @@ public class EventService {
             activityList.add(new ActivityData(event.getDateTimeString(),authType,event.getIssuer()));
         }
 
+        return activityList;
+    }
+
+    public List<ActivityData> getRecentPublicActivity(String ssn){
+        List<Event> events = eventData.getRecentPublicActivity(ssn);
+
+        ArrayList<ActivityData> activityList = new ArrayList<>();
+
+        for(Event event : events){
+            String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
+            activityList.add(new ActivityData(event.getDateTimeString(),logType, event.getIssuer()));
+        }
         return activityList;
     }
 }

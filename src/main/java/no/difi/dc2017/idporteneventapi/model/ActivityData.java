@@ -8,11 +8,11 @@ import java.util.Date;
 public class ActivityData {
 
     private String dateTime;
-    private String authType;
+    private String type;
     private String issuer;
 
-    public ActivityData(String dateTime, String authType, String issuer){
-        this.authType = authType;
+    public ActivityData(String dateTime, String type, String issuer){
+        this.type = type;
         this.dateTime = dateTime;
         this.issuer = issuer;
     }
@@ -21,8 +21,8 @@ public class ActivityData {
         return dateTime;
     }
 
-    public String getAuthType() {
-        return authType;
+    public String getType() {
+        return type;
     }
 
     public String getIssuer() {

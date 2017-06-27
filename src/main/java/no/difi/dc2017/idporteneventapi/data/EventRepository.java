@@ -26,6 +26,8 @@ public interface EventRepository extends JpaRepository<Event, Long>{
     List<Event> getUsedServices(String ssn);
 
     @Query(value = "select * from event where ssn = ? and log_type = 23 order by id desc limit 17", nativeQuery = true)
-    List<Event> getRecentActivity(String ssn);
+    List<Event> getRecentUserActivity(String ssn);
 
+    @Query(value = "select * from event where ssn = ? and (log_type >= 800 and log_type<=805) order by id desc limit 17", nativeQuery = true)
+    List<Event> getRecentPublicActivity(String ssn);
 }

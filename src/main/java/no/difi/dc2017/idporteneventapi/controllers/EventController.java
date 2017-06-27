@@ -82,7 +82,7 @@ public class EventController {
     public List<AuthType> getAllAuthTypes(){
         return authTypeData.findAll();
     }
-    
+
     @RequestMapping(value = "getMostUsedId/{ssn}", method = RequestMethod.GET)
     public List<Object[]> getMostUsedId(@PathVariable String ssn){
         return eventData.getMostUsedId(ssn);
@@ -103,9 +103,14 @@ public class EventController {
         return eventService.getUsedServices(ssn);
     }
 
-    @RequestMapping(value = "getRecentActivity/{ssn}", method = RequestMethod.GET)
-    public List<ActivityData> getRecentActivity(@PathVariable String ssn) {
-        return eventService.getRecentActivity(ssn);
+    @RequestMapping(value = "getRecentUserActivity/{ssn}", method = RequestMethod.GET)
+    public List<ActivityData> getRecentUserActivity(@PathVariable String ssn) {
+        return eventService.getRecentUserActivity(ssn);
+    }
+
+    @RequestMapping(value = "getRecentPublicActivity/{ssn}", method = RequestMethod.GET)
+    public List<ActivityData> getRecentPublicActivity(@PathVariable String ssn){
+        return eventService.getRecentPublicActivity(ssn);
     }
 
 }
