@@ -94,18 +94,6 @@ public class EventService {
         return data;
     }
 
-
-    public boolean isReserved(String ssn){
-        List<Event> events = eventData.isReserved(ssn);
-
-        if(events.size()>0){
-            if(events.get(0).getLogType() == 515){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public List<ActivityData> getRecentUserActivity(String ssn){
         List<Event> events = eventData.getRecentUserActivity(ssn);
 

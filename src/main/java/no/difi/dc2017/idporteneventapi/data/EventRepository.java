@@ -19,9 +19,6 @@ public interface EventRepository extends JpaRepository<Event, Long>{
     @Query(value = "select auth_type.id, auth_type.value, count(auth_type.id) from (auth_type inner join (select auth_type from event where log_type = 23 and  ssn = ? limit 100000) as ev on ev.auth_type = auth_type.id) group by auth_type.id", nativeQuery = true)
     List<Object[]> getMostUsedAuthTypes(String ssn);
 
-    @Query(value = "select * from event where (log_type=515 or log_type = 516) and ssn = ? order by id desc limit 1;" , nativeQuery = true)
-    List<Event> isReserved(String ssn);
-
     @Query(value = "select * from event where (log_type = 51 or log_type= 510 or log_type = 605) and ssn = ?", nativeQuery = true)
     List<Event> getUsedServices(String ssn);
 
