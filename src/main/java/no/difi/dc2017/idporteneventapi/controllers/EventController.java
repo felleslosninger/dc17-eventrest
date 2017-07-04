@@ -76,12 +76,6 @@ public class EventController {
         return logTypeData.findOne(id);
     }
 
-    @RequestMapping(value = "isReserved",method = RequestMethod.GET)
-    public boolean isReserved(){
-        String ssn = eventService.getUserDetails();
-        return eventService.isReserved(ssn);
-    }
-
     @RequestMapping(value = "getUsedServices", method = RequestMethod.GET)
     public List<ServiceData> getUserServices(){
         String ssn = eventService.getUserDetails();
