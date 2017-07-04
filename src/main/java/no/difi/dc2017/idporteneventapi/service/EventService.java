@@ -1,5 +1,6 @@
 package no.difi.dc2017.idporteneventapi.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import no.difi.dc2017.idporteneventapi.controllers.EventController;
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
 import no.difi.dc2017.idporteneventapi.model.ActivityData;
@@ -7,11 +8,16 @@ import no.difi.dc2017.idporteneventapi.model.Event;
 import no.difi.dc2017.idporteneventapi.model.LogType;
 import no.difi.dc2017.idporteneventapi.model.ServiceData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
@@ -25,6 +31,45 @@ public class EventService {
 
     @Autowired
     private EventController eventController;
+
+    @Autowired
+    OAuth2ClientContext oauth2ClientContext;
+    private final static String URI = "https://oidc-ver2.difi.no/idporten-oidc-provider/userinfo";
+
+    public String getUserDetails() {
+        // read access token from principal
+        String at = oauth2ClientContext.getAccessToken().toString();
+//        String idt = oauth2ClientContext.getAccessToken().getAdditionalInformation().toString();
+        //Make api request to krr endpoint with access token as Authorization http header using RestTemplate
+        //Header:
+        //Authorization: Bearer <access_token>
+        //https://oidc-ver2.difi.no/kontaktinfo-oauth2-server/rest/v1/person
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer "+ at);
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+
+        RestTemplate rt = new RestTemplate();
+        HttpEntity<String> response = rt.exchange(
+                URI,
+                HttpMethod.GET,
+                entity,
+                String.class);
+
+
+        System.out.println(response.getBody());
+        String body = response.getBody();
+        HashMap<String,String> result =
+                null;
+        try {
+            result = new ObjectMapper().readValue(body, HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // return content from krr
+        return result.get("pid");
+    }
+
 
     public List<ServiceData> getUsedServices(String ssn) {
 

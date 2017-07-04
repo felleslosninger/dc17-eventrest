@@ -1,9 +1,6 @@
 package no.difi.dc2017.idporteneventapi.controllers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.LogTypeRepository;
@@ -11,16 +8,13 @@ import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
 import no.difi.dc2017.idporteneventapi.model.*;
 import no.difi.dc2017.idporteneventapi.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.*;
-
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
+
 
 @RestController
 public class EventController {
@@ -37,12 +31,15 @@ public class EventController {
     private LogTypeRepository logTypeData;
 
 
+
+
     @PreAuthorize("#oauth2.hasScope('profile')")
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
         Event ev = eventData.findOne(id);
         return ev;
     }
+
 
     @RequestMapping(value = "/eventBySsn/{ssn}")
     public Collection<Event> eventBySsn(@PathVariable String ssn){
@@ -58,6 +55,7 @@ public class EventController {
 
     @RequestMapping(value = "getAuthTypeById/{id}", method = RequestMethod.GET)
     public AuthType getAuthTypeById(@PathVariable long id){
+        System.out.println(eventService.getUserDetails());
         return authTypeData.findOne(id);
     }
 
