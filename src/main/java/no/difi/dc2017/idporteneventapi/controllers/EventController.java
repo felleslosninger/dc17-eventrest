@@ -41,8 +41,9 @@ public class EventController {
     }
 
 
-    @RequestMapping(value = "/eventBySsn/{ssn}")
-    public Collection<Event> eventBySsn(@PathVariable String ssn){
+    @RequestMapping(value = "/eventBySsn")
+    public Collection<Event> eventBySsn(){
+        String ssn = eventService.getUserDetails();
         return eventData.findFirst10BySsnOrderByIdDesc(ssn);
     }
 
@@ -64,8 +65,9 @@ public class EventController {
         return authTypeData.findAll();
     }
 
-    @RequestMapping(value = "getMostUsedAuthTypes/{ssn}", method = RequestMethod.GET)
-    public List<Object[]> getMostUsedId(@PathVariable String ssn){
+    @RequestMapping(value = "getMostUsedAuthTypes", method = RequestMethod.GET)
+    public List<Object[]> getMostUsedId(){
+        String ssn = eventService.getUserDetails();
         return eventData.getMostUsedAuthTypes(ssn);
     }
 
@@ -74,23 +76,27 @@ public class EventController {
         return logTypeData.findOne(id);
     }
 
-    @RequestMapping(value = "isReserved/{ssn}",method = RequestMethod.GET)
-    public boolean isReserved(@PathVariable String ssn){
+    @RequestMapping(value = "isReserved",method = RequestMethod.GET)
+    public boolean isReserved(){
+        String ssn = eventService.getUserDetails();
         return eventService.isReserved(ssn);
     }
 
-    @RequestMapping(value = "getUsedServices/{ssn}", method = RequestMethod.GET)
-    public List<ServiceData> getUserServices(@PathVariable String ssn){
+    @RequestMapping(value = "getUsedServices", method = RequestMethod.GET)
+    public List<ServiceData> getUserServices(){
+        String ssn = eventService.getUserDetails();
         return eventService.getUsedServices(ssn);
     }
 
-    @RequestMapping(value = "getRecentUserActivity/{ssn}", method = RequestMethod.GET)
-    public List<ActivityData> getRecentUserActivity(@PathVariable String ssn) {
+    @RequestMapping(value = "getRecentUserActivity", method = RequestMethod.GET)
+    public List<ActivityData> getRecentUserActivity() {
+        String ssn = eventService.getUserDetails();
         return eventService.getRecentUserActivity(ssn);
     }
 
-    @RequestMapping(value = "getRecentPublicActivity/{ssn}", method = RequestMethod.GET)
-    public List<ActivityData> getRecentPublicActivity(@PathVariable String ssn){
+    @RequestMapping(value = "getRecentPublicActivity", method = RequestMethod.GET)
+    public List<ActivityData> getRecentPublicActivity(){
+        String ssn = eventService.getUserDetails();
         return eventService.getRecentPublicActivity(ssn);
     }
 
