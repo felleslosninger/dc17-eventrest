@@ -14,7 +14,7 @@ Rest api for Eventloggen til IDporten.
 * /eventBySsn/{ssn} - Finner siste 10 Events for en person
 * /getAuthTypeById/{id} - Finner autentiseringstype etter id 
 * /getAllAuthTypes/ - Finner alle autentiseringstyper
-* /getMostUsedId/{ssn} - Finner mest brukte autentiseringstyper for en person
+* /getMostUsedAuthTypes/{ssn} - Finner mest brukte autentiseringstyper for en person
 * /getLogTypeById/{id} - Finner Logtype etter id
 * /isReserved/{ssn} - Finner om en person har reservert seg eller ikke
 * /getUsedServices/{ssn} - Finner brukte og ikke brukte servicer
