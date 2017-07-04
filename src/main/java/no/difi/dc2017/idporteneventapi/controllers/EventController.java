@@ -37,8 +37,6 @@ public class EventController {
     private LogTypeRepository logTypeData;
 
 
-
-
     @PreAuthorize("#oauth2.hasScope('profile')")
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
@@ -46,30 +44,9 @@ public class EventController {
         return ev;
     }
 
-    @RequestMapping(value = "/events" ,method = RequestMethod.GET)
-    public List<Event> events(){
-        return eventData.findAll();
-    }
-
-    @RequestMapping(value = "/statyear/{id}", method = RequestMethod.GET)
-    public StatYear statYear(@PathVariable long id){
-        StatYear sY = statYearData.findOne(id);
-        return sY;
-    }
-
-    @RequestMapping(value = "/statyearSize", method = RequestMethod.GET)
-    public String statyearSize(){
-        return String.valueOf(eventData.count());
-    }
-
     @RequestMapping(value = "/eventBySsn/{ssn}")
     public Collection<Event> eventBySsn(@PathVariable String ssn){
         return eventData.findFirst10BySsnOrderByIdDesc(ssn);
-    }
-
-    @RequestMapping(value = "statYearByIssuer/{issuer}")
-    public Collection<StatYear> statYearByIssuer(@PathVariable String issuer){
-        return statYearData.findByIssuer(issuer);
     }
 
     @RequestMapping(value = "getLatestEvents", method = RequestMethod.GET)
