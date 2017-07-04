@@ -11,9 +11,13 @@ import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
 import no.difi.dc2017.idporteneventapi.model.*;
 import no.difi.dc2017.idporteneventapi.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.*;
 
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
@@ -34,6 +38,8 @@ public class EventController {
 
 
 
+
+    @PreAuthorize("#oauth2.hasScope('profile')")
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
         Event ev = eventData.findOne(id);
