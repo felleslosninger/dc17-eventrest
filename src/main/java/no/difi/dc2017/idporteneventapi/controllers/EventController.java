@@ -66,9 +66,14 @@ public class EventController {
     }
 
     @RequestMapping(value = "getMostUsedAuthTypes", method = RequestMethod.GET)
-    public List<Object[]> getMostUsedId(){
+    public List<Object[]> getMostUsedAuthTypes(){
         String ssn = eventService.getUserDetails();
         return eventData.getMostUsedAuthTypes(ssn);
+    }
+
+    @RequestMapping(value = "getUnusedAuthTypes", method = RequestMethod.GET)
+    public List<AuthType> getUnusedAuthTypes(){
+        return eventService.getUnusedAuthTypes();
     }
 
     @RequestMapping(value = "getLogTypeById/{id}", method = RequestMethod.GET)

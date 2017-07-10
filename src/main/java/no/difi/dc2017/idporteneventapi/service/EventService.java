@@ -3,10 +3,7 @@ package no.difi.dc2017.idporteneventapi.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.difi.dc2017.idporteneventapi.controllers.EventController;
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
-import no.difi.dc2017.idporteneventapi.model.ActivityData;
-import no.difi.dc2017.idporteneventapi.model.Event;
-import no.difi.dc2017.idporteneventapi.model.LogType;
-import no.difi.dc2017.idporteneventapi.model.ServiceData;
+import no.difi.dc2017.idporteneventapi.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -56,7 +53,6 @@ public class EventService {
                 String.class);
 
 
-        System.out.println(response.getBody());
         String body = response.getBody();
         HashMap<String,String> result =
                 null;
@@ -68,6 +64,34 @@ public class EventService {
 
         // return content from krr
         return result.get("pid");
+    }
+
+    public List<AuthType> getUnusedAuthTypes(){
+        List<AuthType> allAuthTypes = eventController.getAllAuthTypes();
+        List<Integer> usedauthTypeIds = new ArrayList<>();
+        List<Integer> authTypeIds = new ArrayList<>();
+        List<Object[]> allUsedAuthTypes = eventController.getMostUsedAuthTypes();
+        List<AuthType> unusedAuthTypes = new ArrayList<>();
+
+        allUsedAuthTypes.forEach(authType -> {
+            Integer authId = (Integer) authType[0];
+            usedauthTypeIds.add(authId);
+        });
+
+        allAuthTypes.forEach(at -> {
+            Integer authId = (int) (long) at.getId();
+            authTypeIds.add(authId);
+        }) ;
+
+        for (Integer i : authTypeIds){
+            if(!usedauthTypeIds.contains(i)){
+                Long id = i.longValue();
+                unusedAuthTypes.add(eventController.getAuthTypeById(id));
+            }
+        }
+
+        return unusedAuthTypes;
+
     }
 
 
@@ -87,7 +111,6 @@ public class EventService {
             int logType = ev.getLogType();
             if(ids.contains(logType)){
                 data.get(ids.indexOf(logType)).setUsed(true);
-                System.out.print("hello");
             }
         }
 
