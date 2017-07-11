@@ -56,7 +56,6 @@ public class EventController {
 
     @RequestMapping(value = "getAuthTypeById/{id}", method = RequestMethod.GET)
     public AuthType getAuthTypeById(@PathVariable long id){
-        System.out.println(eventService.getUserDetails());
         return authTypeData.findOne(id);
     }
 
