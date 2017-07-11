@@ -99,4 +99,12 @@ public class EventController {
         return eventService.getRecentPublicActivity(ssn);
     }
 
+    @RequestMapping(value="getPostBoks", method = RequestMethod.GET)
+    public String getPostBoks(){
+        String ssn = eventService.getUserDetails();
+        return eventService.getPostBoks(ssn);
+    }
+
+
+
 }

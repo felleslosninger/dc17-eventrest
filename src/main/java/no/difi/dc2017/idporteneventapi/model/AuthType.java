@@ -22,6 +22,8 @@ public class AuthType {
         return value;
     }
 
+
+
     @Override
     public String toString() {
         return "AuthType{" +

@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -42,7 +43,7 @@ public class EventService {
         //Authorization: Bearer <access_token>
         //https://oidc-ver2.difi.no/kontaktinfo-oauth2-server/rest/v1/person
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer "+ at);
+        headers.set("Authorization", "Bearer " + at);
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
         RestTemplate rt = new RestTemplate();
@@ -54,19 +55,35 @@ public class EventService {
 
 
         String body = response.getBody();
-        HashMap<String,String> result =
+        HashMap<String, String> result =
                 null;
         try {
             result = new ObjectMapper().readValue(body, HashMap.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         // return content from krr
         return result.get("pid");
     }
 
-    public List<AuthType> getUnusedAuthTypes(){
+    public String getPostBoks(String ssn) {
+        List<Event> postBox = eventData.getPostboks(ssn);
+        if (postBox.size() == 0) {
+            return "";
+        }
+        Event currentPostBox = postBox.get(0);
+        if (currentPostBox.getIssuer().contains("e-boks")) {
+            return "e-Boks";
+        } else if (currentPostBox.getIssuer().contains("digi")) {
+            return "Digipost";
+        } else {
+            return "";
+        }
+
+    }
+
+
+    public List<AuthType> getUnusedAuthTypes() {
         List<AuthType> allAuthTypes = eventController.getAllAuthTypes();
         List<Integer> usedauthTypeIds = new ArrayList<>();
         List<Integer> authTypeIds = new ArrayList<>();
@@ -81,16 +98,27 @@ public class EventService {
         allAuthTypes.forEach(at -> {
             Integer authId = (int) (long) at.getId();
             authTypeIds.add(authId);
-        }) ;
+        });
 
-        for (Integer i : authTypeIds){
-            if(!usedauthTypeIds.contains(i)){
+        for (Integer i : authTypeIds) {
+            if (!usedauthTypeIds.contains(i)) {
                 Long id = i.longValue();
                 unusedAuthTypes.add(eventController.getAuthTypeById(id));
             }
         }
-
         return unusedAuthTypes;
+    }
+
+    public List<AuthType> getUsedServices() {
+        List<Object[]> mostUsed = eventController.getMostUsedAuthTypes();
+        List<AuthType> used = new ArrayList<>();
+        mostUsed.forEach(at -> {
+            Integer id = (Integer) at[0];
+            Long lId = id.longValue();
+            used.add(eventController.getAuthTypeById(lId));
+        });
+
+        return used;
 
     }
 
@@ -98,18 +126,18 @@ public class EventService {
     public List<ServiceData> getUsedServices(String ssn) {
 
         List<Event> events = eventData.getUsedServices(ssn);
-        List<Integer> ids = Arrays.asList(51,510,605);
+        List<Integer> ids = Arrays.asList(51, 510, 605);
         ArrayList<ServiceData> data = new ArrayList<>();
 
-        for(int i : ids){
+        for (int i : ids) {
             LogType logType = eventController.getLogTypeById(i);
             data.add(new ServiceData(logType.getDescription(), false));
         }
 
-        for(Event ev: events){
+        for (Event ev : events) {
             boolean isUsed = false;
             int logType = ev.getLogType();
-            if(ids.contains(logType)){
+            if (ids.contains(logType)) {
                 data.get(ids.indexOf(logType)).setUsed(true);
             }
         }
@@ -117,27 +145,27 @@ public class EventService {
         return data;
     }
 
-    public List<ActivityData> getRecentUserActivity(String ssn){
+    public List<ActivityData> getRecentUserActivity(String ssn) {
         List<Event> events = eventData.getRecentUserActivity(ssn);
 
         ArrayList<ActivityData> activityList = new ArrayList<>();
 
-        for(Event event : events){
+        for (Event event : events) {
             String authType = eventController.getAuthTypeById(event.getAuthType()).getValue();
-            activityList.add(new ActivityData(event.getDateTimeString(),authType,event.getIssuer()));
+            activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
         }
 
         return activityList;
     }
 
-    public List<ActivityData> getRecentPublicActivity(String ssn){
+    public List<ActivityData> getRecentPublicActivity(String ssn) {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
 
         ArrayList<ActivityData> activityList = new ArrayList<>();
 
-        for(Event event : events){
+        for (Event event : events) {
             String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
-            activityList.add(new ActivityData(event.getDateTimeString(),logType, event.getIssuer()));
+            activityList.add(new ActivityData(event.getDateTimeString(), logType, event.getIssuer()));
         }
         return activityList;
     }

@@ -27,4 +27,8 @@ public interface EventRepository extends JpaRepository<Event, Long>{
 
     @Query(value = "select * from event where ssn = ? and (log_type >= 800 and log_type<=805) order by id desc limit 17", nativeQuery = true)
     List<Event> getRecentPublicActivity(String ssn);
+
+    @Query(value = "SELECT * FROM event WHERE (issuer LIKE '%e-boks%' or issuer like '%digi%') AND log_type = 23 AND ssn = ? order by id desc", nativeQuery = true)
+    List<Event> getPostboks(String ssn);
+
 }
