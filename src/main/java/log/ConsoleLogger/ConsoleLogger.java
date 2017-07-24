@@ -1,22 +1,22 @@
-package log;
-import org.slf4j.Logger;
+package log.ConsoleLogger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 /**
  * Created by camp-cms on 24.07.2017.
  */
-public class EventRestLogger {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+public class ConsoleLogger {
+    private final Logger logger = LoggerFactory.getLogger("ConsoleLogger");
 
     public boolean loggToConsole(char key, String sentence){
         switch(key){
             case 'd': logger.debug(sentence);
-                    break;
+                break;
             case 'i': logger.info(sentence);
-                    break;
+                break;
             case 'w': logger.warn(sentence);
-                    break;
+                break;
             case 'e': logger.error(sentence);
-                    break;
+                break;
             default: System.out.println("Logger can not find key");
                 return false;
         }
