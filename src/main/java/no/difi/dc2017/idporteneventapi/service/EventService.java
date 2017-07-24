@@ -34,6 +34,9 @@ public class EventService {
     OAuth2ClientContext oauth2ClientContext;
     private final static String URI = "https://oidc-ver2.difi.no/idporten-oidc-provider/userinfo";
 
+    /**
+    * get personal id
+    * */
     public String getUserDetails() {
         // read access token from principal
         String at = oauth2ClientContext.getAccessToken().toString();
@@ -66,6 +69,10 @@ public class EventService {
         return result.get("pid");
     }
 
+    /**
+    * get postboks to the user with social security number
+    * @param ssn
+    * */
     public String getPostBoks(String ssn) {
         List<Event> postBox = eventData.getPostboks(ssn);
         if (postBox.size() == 0) {
@@ -82,7 +89,9 @@ public class EventService {
 
     }
 
-
+/**
+*   Get the authorization types that the user do not use
+* */
     public List<AuthType> getUnusedAuthTypes() {
         List<AuthType> allAuthTypes = eventController.getAllAuthTypes();
         List<Integer> usedauthTypeIds = new ArrayList<>();
@@ -109,6 +118,10 @@ public class EventService {
         return unusedAuthTypes;
     }
 
+
+    /**
+     * get all services the user use according to his/hers id
+     * */
     public List<AuthType> getUsedServices() {
         List<Object[]> mostUsed = eventController.getMostUsedAuthTypes();
         List<AuthType> used = new ArrayList<>();
@@ -122,7 +135,9 @@ public class EventService {
 
     }
 
-
+    /**
+     * get all services the user use according to his/hers social security number
+     * */
     public List<ServiceData> getUsedServices(String ssn) {
 
         List<Event> events = eventData.getUsedServices(ssn);
@@ -144,7 +159,9 @@ public class EventService {
 
         return data;
     }
-
+    /**
+     * get all of the user activity with data and time according to his/hers social security number
+     * */
     public List<ActivityData> getRecentUserActivity(String ssn) {
         List<Event> events = eventData.getRecentUserActivity(ssn);
 
@@ -158,6 +175,9 @@ public class EventService {
         return activityList;
     }
 
+    /**
+     * get all of the public activity with data and time according to his/hers social security number
+     * */
     public List<ActivityData> getRecentPublicActivity(String ssn) {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
 
