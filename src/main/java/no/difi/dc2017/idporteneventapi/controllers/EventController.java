@@ -44,6 +44,7 @@ public class EventController {
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
         Event ev = eventData.findOne(id);
+        flogg.logg('i', "Display event with " + id);
         return ev;
     }
 
