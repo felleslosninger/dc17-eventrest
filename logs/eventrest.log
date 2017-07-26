@@ -1,0 +1,23 @@
+16:10:27.277 [http-nio-4500-exec-7] INFO  FileLogger - Display unused authorization types
+16:10:27.277 [http-nio-4500-exec-7] INFO  FileLogger - Display all authorization types
+16:10:27.394 [http-nio-4500-exec-8] INFO  FileLogger - Display user services to 15079422131
+16:10:27.477 [http-nio-4500-exec-9] INFO  FileLogger - Display recently user activity to 15079422131
+16:10:27.477 [http-nio-4500-exec-5] INFO  FileLogger - Display most used authorization types to 15079422131
+16:10:27.477 [http-nio-4500-exec-10] INFO  FileLogger - Display recently public activity to 15079422131
+16:10:27.477 [http-nio-4500-exec-6] INFO  FileLogger - Display postbox to 15079422131
+16:10:27.594 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 51
+16:10:27.694 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
+16:10:27.711 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 3
+16:10:27.794 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 510
+16:10:27.794 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
+16:10:27.910 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 605
+16:10:28.643 [http-nio-4500-exec-7] INFO  FileLogger - Display most used authorization types to 15079422131
+16:10:28.644 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 0
+16:10:28.694 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 1
+16:10:28.744 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 2
+16:10:28.761 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 4
+16:10:28.794 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 5
+16:10:28.827 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 6
+16:10:28.844 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 7
+16:10:28.860 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 8
+16:10:28.993 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 9
