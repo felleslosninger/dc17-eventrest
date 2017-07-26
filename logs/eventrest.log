@@ -1,46 +1,68 @@
-16:10:27.277 [http-nio-4500-exec-7] INFO  FileLogger - Display unused authorization types
-16:10:27.277 [http-nio-4500-exec-7] INFO  FileLogger - Display all authorization types
-16:10:27.394 [http-nio-4500-exec-8] INFO  FileLogger - Display user services to 15079422131
-16:10:27.477 [http-nio-4500-exec-9] INFO  FileLogger - Display recently user activity to 15079422131
-16:10:27.477 [http-nio-4500-exec-5] INFO  FileLogger - Display most used authorization types to 15079422131
-16:10:27.477 [http-nio-4500-exec-10] INFO  FileLogger - Display recently public activity to 15079422131
-16:10:27.477 [http-nio-4500-exec-6] INFO  FileLogger - Display postbox to 15079422131
-16:10:27.594 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 51
-16:10:27.694 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
-16:10:27.711 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 3
-16:10:27.794 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 510
-16:10:27.794 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
-16:10:27.910 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 605
-16:10:28.643 [http-nio-4500-exec-7] INFO  FileLogger - Display most used authorization types to 15079422131
-16:10:28.644 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 0
-16:10:28.694 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 1
-16:10:28.744 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 2
-16:10:28.761 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 4
-16:10:28.794 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 5
-16:10:28.827 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 6
-16:10:28.844 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 7
-16:10:28.860 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 8
-16:10:28.993 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 9
-16:21:37.525 [http-nio-4500-exec-10] INFO  FileLogger - Display recently public activity to 15079422131
-16:21:37.532 [http-nio-4500-exec-7] INFO  FileLogger - Display unused authorization types
-16:21:37.534 [http-nio-4500-exec-7] INFO  FileLogger - Display all authorization types
-16:21:37.544 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
-16:21:37.552 [http-nio-4500-exec-9] INFO  FileLogger - Display recently user activity to 15079422131
-16:21:37.577 [http-nio-4500-exec-8] INFO  FileLogger - Display user services to 15079422131
-16:21:37.593 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 3
-16:21:37.635 [http-nio-4500-exec-6] INFO  FileLogger - Display most used authorization types to 15079422131
-16:21:37.639 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 51
-16:21:37.665 [http-nio-4500-exec-10] INFO  FileLogger - Display log type to 800
-16:21:37.703 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 510
-16:21:37.705 [http-nio-4500-exec-7] INFO  FileLogger - Display most used authorization types to 15079422131
-16:21:37.722 [http-nio-4500-exec-5] INFO  FileLogger - Display postbox to 15079422131
-16:21:37.727 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 0
-16:21:37.791 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 1
-16:21:37.794 [http-nio-4500-exec-8] INFO  FileLogger - Display log type to 605
-16:21:37.850 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 2
-16:21:37.904 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 4
-16:21:37.956 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 5
-16:21:37.996 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 6
-16:21:38.041 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 7
-16:21:38.076 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 8
-16:21:38.116 [http-nio-4500-exec-7] INFO  FileLogger - Display authorization type to 9
+17:29:06.335 [http-nio-4500-exec-9] INFO  FileLogger - Display unused authorization types
+17:29:06.336 [http-nio-4500-exec-9] INFO  FileLogger - Display all authorization types
+17:29:06.438 [http-nio-4500-exec-4] INFO  FileLogger - Display recently public activity to 15079422131
+17:29:06.441 [http-nio-4500-exec-8] INFO  FileLogger - Display most used authorization types to 15079422131
+17:29:06.441 [http-nio-4500-exec-3] INFO  FileLogger - Display postbox to 15079422131
+17:29:06.445 [http-nio-4500-exec-7] INFO  FileLogger - Display user services to 15079422131
+17:29:06.455 [http-nio-4500-exec-4] INFO  FileLogger - Display log type to 800
+17:29:06.498 [http-nio-4500-exec-7] INFO  FileLogger - Display log type to 51
+17:29:06.550 [http-nio-4500-exec-4] INFO  FileLogger - Display log type to 800
+17:29:06.561 [http-nio-4500-exec-1] INFO  FileLogger - Display recently user activity to 15079422131
+17:29:06.566 [http-nio-4500-exec-7] INFO  FileLogger - Display log type to 510
+17:29:06.574 [http-nio-4500-exec-1] INFO  FileLogger - Display authorization type to 3
+17:29:06.575 [http-nio-4500-exec-9] INFO  FileLogger - Display most used authorization types to 15079422131
+17:29:06.608 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 0
+17:29:06.669 [http-nio-4500-exec-7] INFO  FileLogger - Display log type to 605
+17:29:06.704 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 1
+17:29:06.796 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 2
+17:29:06.914 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 4
+17:29:06.948 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 5
+17:29:06.999 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 6
+17:29:07.124 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 7
+17:29:07.175 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 8
+17:29:07.241 [http-nio-4500-exec-9] INFO  FileLogger - Display authorization type to 9
+17:38:23.787 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getUnusedAuthTypes(): Display unused authorization types
+17:38:23.890 [http-nio-4500-exec-7] INFO  FileLogger - EventController.getRecentUserActivity(): Display recently user activity to 15079422131
+17:38:23.893 [http-nio-4500-exec-9] INFO  FileLogger - EventController.getRecentPublicActivity(): Display recently public activity to 15079422131
+17:38:23.895 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getUsedServices: Display user services to 15079422131
+17:38:23.941 [http-nio-4500-exec-7] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:23.944 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getLogTypeById(): Display log type to 51
+17:38:23.944 [http-nio-4500-exec-9] INFO  FileLogger - EventController.getLogTypeById(): Display log type to 800
+17:38:23.967 [http-nio-4500-exec-6] INFO  FileLogger - EventController.getMostUsedAuthTypes(): Display most used authorization types to 15079422131
+17:38:24.050 [http-nio-4500-exec-5] INFO  FileLogger - EventController.getPostBoks(): Display postbox to 15079422131
+17:38:24.070 [http-nio-4500-exec-9] INFO  FileLogger - EventController.getLogTypeById(): Display log type to 800
+17:38:24.074 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getMostUsedAuthTypes(): Display most used authorization types to 15079422131
+17:38:24.091 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getLogTypeById(): Display log type to 510
+17:38:24.098 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.136 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.143 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getLogTypeById(): Display log type to 605
+17:38:24.194 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.214 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.284 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.318 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.348 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.406 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:38:24.468 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById(): Authorization type is displayed
+17:44:05.315 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getUnusedAuthTypes: Display unused authorization types
+17:44:05.315 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAllAuthTypes: Display all authorization types
+17:44:05.352 [http-nio-4500-exec-7] INFO  FileLogger - EventController.getRecentPublicActivity: Display recently public activity to 15079422131
+17:44:05.374 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getRecentlyUserActivity: Display recently user activity to 15079422131
+17:44:05.405 [http-nio-4500-exec-10] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.406 [http-nio-4500-exec-7] INFO  FileLogger - EventController.getLogTypeById: Display log type to 800
+17:44:05.417 [http-nio-4500-exec-6] INFO  FileLogger - EventController.getUsedServices: Display user services to 15079422131
+17:44:05.431 [http-nio-4500-exec-5] INFO  FileLogger - EventController.getMostUsedAuthTypes: Display most used authorization types to 15079422131
+17:44:05.497 [http-nio-4500-exec-6] INFO  FileLogger - EventController.getLogTypeById: Display log type to 51
+17:44:05.520 [http-nio-4500-exec-4] INFO  FileLogger - EventController.getRecentPublicActivity: Display postbox to 15079422131
+17:44:05.588 [http-nio-4500-exec-7] INFO  FileLogger - EventController.getLogTypeById: Display log type to 800
+17:44:05.613 [http-nio-4500-exec-6] INFO  FileLogger - EventController.getLogTypeById: Display log type to 510
+17:44:05.620 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getMostUsedAuthTypes: Display most used authorization types to 15079422131
+17:44:05.644 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.717 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.723 [http-nio-4500-exec-6] INFO  FileLogger - EventController.getLogTypeById: Display log type to 605
+17:44:05.775 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.870 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.942 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:05.968 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:06.039 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:06.098 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
+17:44:06.141 [http-nio-4500-exec-8] INFO  FileLogger - EventController.getAuthTypeById: Display authorization type
