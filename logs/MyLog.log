@@ -1,0 +1,8 @@
+13:51:46.553 [main] INFO  FileLogger - This is information
+13:51:46.553 [main] DEBUG FileLogger - This is debug info
+13:51:46.553 [main] ERROR FileLogger - This is an error
+13:51:46.553 [main] WARN  FileLogger - This is a warning
+13:52:02.403 [main] INFO  FileLogger - This is information
+13:52:02.403 [main] DEBUG FileLogger - This is debug info
+13:52:02.403 [main] ERROR FileLogger - This is an error
+13:52:02.403 [main] WARN  FileLogger - This is a warning

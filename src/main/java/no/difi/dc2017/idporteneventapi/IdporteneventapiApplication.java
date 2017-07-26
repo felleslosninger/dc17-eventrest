@@ -1,6 +1,6 @@
 package no.difi.dc2017.idporteneventapi;
-import log.ConsoleLogger.*;
-import log.FileLogger.*;
+import log.ConsoleLogger;
+import log.FileLogger;
 /*
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class IdporteneventapiApplication {
 	public static void main(String[] args){
-		ConsoleLogger erl = new ConsoleLogger();
-		erl.loggToConsole('i', "This is information");
-		erl.loggToConsole('d', "This is debug info");
-		erl.loggToConsole('e', "This is an error");
-		erl.loggToConsole('w', "This is a warning");
-		erl.loggToConsole('a', "lala");
 		//SpringApplication.run(IdporteneventapiApplication.class, args);
 	}
 }
