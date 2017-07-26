@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import log.FileLogger;
 /*
 * Get the id and value for the authorization type
 * */
@@ -12,6 +13,9 @@ import javax.persistence.Id;
 public class AuthType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+
+    FileLogger flogger = new FileLogger();
+
     private long id;
 
     private String value;

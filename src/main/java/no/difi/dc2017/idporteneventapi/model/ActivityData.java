@@ -1,5 +1,6 @@
 package no.difi.dc2017.idporteneventapi.model;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -8,7 +9,6 @@ import java.util.Date;
  *  Get the datatime, type and issuer for the activity data
  */
 public class ActivityData {
-
     private String dateTime;
     private String type;
     private String issuer;
