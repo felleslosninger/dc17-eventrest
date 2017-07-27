@@ -17,12 +17,15 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.IntStream;
-
+import log.FileLogger;
+import log.ConsoleLogger;
 /**
  * Created by camp-oob on 22.06.2017.
  */
 @Service
 public class EventService {
+    private ConsoleLogger clogger = new ConsoleLogger();
+    private FileLogger flogger = new FileLogger();
 
     @Autowired
     private EventRepository eventData;
@@ -40,6 +43,8 @@ public class EventService {
     public String getUserDetails() {
         // read access token from principal
         String at = oauth2ClientContext.getAccessToken().toString();
+
+
 //        String idt = oauth2ClientContext.getAccessToken().getAdditionalInformation().toString();
         //Make api request to krr endpoint with access token as Authorization http header using RestTemplate
         //Header:
@@ -63,8 +68,15 @@ public class EventService {
         try {
             result = new ObjectMapper().readValue(body, HashMap.class);
         } catch (IOException e) {
+            flogger.logg('w', "EventService.getUserDetails: User with " + at + "tried to get result, " +
+                  "Something went wrong with IO");
+            clogger.logg('w', "EventService.getUserDetails(73): Can not get result");
             e.printStackTrace();
         }
+
+        flogger.logg('i', "EventService.getUserDetails:" + result.get("pid")  +
+            "gets user details with token " + at );
+
         // return content from krr
         return result.get("pid");
     }
@@ -76,14 +88,18 @@ public class EventService {
     public String getPostBoks(String ssn) {
         List<Event> postBox = eventData.getPostboks(ssn);
         if (postBox.size() == 0) {
+            flogger.logg('i', "EventService.getPostboks: Revealing that " + ssn + " has no postbox");
             return "";
         }
         Event currentPostBox = postBox.get(0);
         if (currentPostBox.getIssuer().contains("e-boks")) {
+            flogger.logg('i', "EventService.getPostBoks: Revealing " + currentPostBox.getIssuer() + " as postbox to " + ssn);
             return "e-Boks";
         } else if (currentPostBox.getIssuer().contains("digi")) {
+            flogger.logg('i', "EventService.getPostBoks: Revealing " + currentPostBox.getIssuer() + " as postbox to " + ssn);
             return "Digipost";
         } else {
+            flogger.logg('w', "EventService.getPostboks: " + ssn + "tried to get postbox, but got an empty string");
             return "";
         }
 
@@ -115,6 +131,8 @@ public class EventService {
                 unusedAuthTypes.add(eventController.getAuthTypeById(id));
             }
         }
+
+        flogger.logg('i', "EventService.getUnusedAuthTypes: Getting unused authorization types");
         return unusedAuthTypes;
     }
 
@@ -131,8 +149,8 @@ public class EventService {
             used.add(eventController.getAuthTypeById(lId));
         });
 
+        flogger.logg('i', "EventService.getUsedServices: Reveal used services.\n Description: " + used);
         return used;
-
     }
 
     /**
@@ -157,6 +175,7 @@ public class EventService {
             }
         }
 
+        flogger.logg('i', "EventService.getUsedServices: Reveal used services to " + ssn + ".\n Description: " + data);
         return data;
     }
     /**
@@ -172,6 +191,8 @@ public class EventService {
             activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
         }
 
+        flogger.logg('i', "EventService.getRecentUserActivity: Reveal recent user activity to " + ssn
+         + ".\n Description: " + activityList);
         return activityList;
     }
 
@@ -187,6 +208,9 @@ public class EventService {
             String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
             activityList.add(new ActivityData(event.getDateTimeString(), logType, event.getIssuer()));
         }
+
+        flogger.logg('i', "EventService.getRecentPublicActivity: Reveal recent public activity to " + ssn
+         + ".\n Description: " + activityList);
         return activityList;
     }
 }

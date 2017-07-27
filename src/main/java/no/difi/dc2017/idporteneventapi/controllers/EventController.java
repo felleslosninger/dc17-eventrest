@@ -88,7 +88,7 @@ public class EventController {
         String ssn = eventService.getUserDetails();
         clogg.logg('d', "Getting most used authorization types");
         flogg.logg('i', "EventController.getMostUsedAuthTypes: " +
-                "Display most used authorization types to" + ssn);
+                "Display most used authorization types to " + ssn);
         return eventData.getMostUsedAuthTypes(ssn);
     }
 
