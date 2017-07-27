@@ -68,14 +68,13 @@ public class EventService {
         try {
             result = new ObjectMapper().readValue(body, HashMap.class);
         } catch (IOException e) {
-            flogger.logg('w', "EventService.getUserDetails: User with " + at + "tried to get result, " +
+            flogger.logg('w', "EventService.getUserDetails: User with " + at + " tried to get result, " +
                   "Something went wrong with IO");
             clogger.logg('w', "EventService.getUserDetails(73): Can not get result");
-            e.printStackTrace();
         }
 
-        flogger.logg('i', "EventService.getUserDetails:" + result.get("pid")  +
-            "gets user details with token " + at );
+        flogger.logg('i', "EventService.getUserDetails: " + result.get("pid")  +
+            " gets user details with token " + at );
 
         // return content from krr
         return result.get("pid");
@@ -99,7 +98,7 @@ public class EventService {
             flogger.logg('i', "EventService.getPostBoks: Revealing " + currentPostBox.getIssuer() + " as postbox to " + ssn);
             return "Digipost";
         } else {
-            flogger.logg('w', "EventService.getPostboks: " + ssn + "tried to get postbox, but got an empty string");
+            flogger.logg('w', "EventService.getPostboks: " + ssn + " tried to get postbox, but got an empty string");
             return "";
         }
 
@@ -132,7 +131,7 @@ public class EventService {
             }
         }
 
-        flogger.logg('i', "EventService.getUnusedAuthTypes: Getting unused authorization types");
+        flogger.logg('i', "EventService.getUnusedAuthTypes: Getting unused authorization types\n Description:" + unusedAuthTypes);
         return unusedAuthTypes;
     }
 
@@ -149,7 +148,7 @@ public class EventService {
             used.add(eventController.getAuthTypeById(lId));
         });
 
-        flogger.logg('i', "EventService.getUsedServices: Reveal used services.\n Description: " + used);
+        flogger.logg('i', "EventService.getUsedServices: Reveal used services\n Description: " + used);
         return used;
     }
 
@@ -175,7 +174,8 @@ public class EventService {
             }
         }
 
-        flogger.logg('i', "EventService.getUsedServices: Reveal used services to " + ssn + ".\n Description: " + data);
+        flogger.logg('i', "EventService.getUsedServices: Reveal used services to " + ssn +
+                "\n Description: " + data);
         return data;
     }
     /**
@@ -192,7 +192,7 @@ public class EventService {
         }
 
         flogger.logg('i', "EventService.getRecentUserActivity: Reveal recent user activity to " + ssn
-         + ".\n Description: " + activityList);
+         + "\n Description: " + activityList);
         return activityList;
     }
 
@@ -210,7 +210,7 @@ public class EventService {
         }
 
         flogger.logg('i', "EventService.getRecentPublicActivity: Reveal recent public activity to " + ssn
-         + ".\n Description: " + activityList);
+         + "\n Description: " + activityList);
         return activityList;
     }
 }
