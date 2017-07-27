@@ -44,8 +44,9 @@ public class EventController {
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id){
         Event ev = eventData.findOne(id);
-        flogg.logg('i', "EventController.event() displays event: Events details is revealed for " + id);
-        flogg.logg('i', "Eventdescription:" + ev);
+        clogg.logg('d', "Display event: " + ev);
+        flogg.logg('i', "EventController.event: Reveal event details to " + id
+                + "Event description:" + ev);
         return ev;
     }
 
@@ -53,7 +54,8 @@ public class EventController {
     @RequestMapping(value = "/eventBySsn")
     public Collection<Event> eventBySsn(){
         String ssn = eventService.getUserDetails();
-        flogg.logg('i', "EventController.eventBySsn() displays event: Event details is revealed for" + ssn);
+        clogg.logg('d', "Display event");
+        flogg.logg('i', "EventController.eventBySsn: Reveal event details to " + ssn);
         return eventData.findFirst10BySsnOrderByIdDesc(ssn);
     }
 
@@ -61,18 +63,22 @@ public class EventController {
     public Page<Event> getLatestEvents(){
         PageRequest limit = new PageRequest(1,10 , Sort.Direction.DESC,"hour");
         Page<Event> evList = eventData.findAll(limit);
-        flogg.logg('i', "EventController.getLatestEvent() displays eventlist: "  + evList);
+        clogg.logg('d', "Getting latest events");
+        flogg.logg('i', "EventController.getLatestEvent(): Display list of events" +
+                "\nList description"  + evList);
         return evList;
     }
 
     @RequestMapping(value = "getAuthTypeById/{id}", method = RequestMethod.GET)
     public AuthType getAuthTypeById(@PathVariable long id){
-        flogg.logg('i', "EventController.getAuthTypeById: Display authorization type" );
+        clogg.logg('d', "Getting authorization type by id");
+        flogg.logg('i', "EventController.getAuthTypeById: Display authorization type to " + id);
         return authTypeData.findOne(id);
     }
 
     @RequestMapping(value = "getAllAuthTypes", method = RequestMethod.GET)
     public List<AuthType> getAllAuthTypes(){
+        clogg.logg('d', "Getting all authorization types");
         flogg.logg('i', "EventController.getAllAuthTypes: Display all authorization types");
         return authTypeData.findAll();
     }
@@ -80,18 +86,22 @@ public class EventController {
     @RequestMapping(value = "getMostUsedAuthTypes", method = RequestMethod.GET)
     public List<Object[]> getMostUsedAuthTypes(){
         String ssn = eventService.getUserDetails();
-        flogg.logg('i', "EventController.getMostUsedAuthTypes: Display most used authorization types to " + ssn);
+        clogg.logg('d', "Getting most used authorization types");
+        flogg.logg('i', "EventController.getMostUsedAuthTypes: " +
+                "Display most used authorization types to" + ssn);
         return eventData.getMostUsedAuthTypes(ssn);
     }
 
     @RequestMapping(value = "getUnusedAuthTypes", method = RequestMethod.GET)
     public List<AuthType> getUnusedAuthTypes(){
+        clogg.logg('d', "Getting unused authorization types");
         flogg.logg('i', "EventController.getUnusedAuthTypes: Display unused authorization types");
         return eventService.getUnusedAuthTypes();
     }
 
     @RequestMapping(value = "getLogTypeById/{id}", method = RequestMethod.GET)
     public LogType getLogTypeById(@PathVariable long id){
+        clogg.logg('d', "Getting log type by id");
         flogg.logg('i', "EventController.getLogTypeById: Display log type to " + id);
         return logTypeData.findOne(id);
     }
@@ -99,6 +109,7 @@ public class EventController {
     @RequestMapping(value = "getUsedServices", method = RequestMethod.GET)
     public List<ServiceData> getUserServices(){
         String ssn = eventService.getUserDetails();
+        clogg.logg('d',"Getting used services");
         flogg.logg('i', "EventController.getUsedServices: Display user services to " + ssn);
         return eventService.getUsedServices(ssn);
     }
@@ -106,21 +117,26 @@ public class EventController {
     @RequestMapping(value = "getRecentUserActivity", method = RequestMethod.GET)
     public List<ActivityData> getRecentUserActivity() {
         String ssn = eventService.getUserDetails();
-        flogg.logg('i', "EventController.getRecentlyUserActivity: Display recently user activity to " + ssn);
+        clogg.logg('d', "Getting recently user activity");
+        flogg.logg('i', "EventController.getRecentlyUserActivity: " +
+                "Display recently user activity to " + ssn);
         return eventService.getRecentUserActivity(ssn);
     }
 
     @RequestMapping(value = "getRecentPublicActivity", method = RequestMethod.GET)
     public List<ActivityData> getRecentPublicActivity(){
         String ssn = eventService.getUserDetails();
-        flogg.logg('i', "EventController.getRecentPublicActivity: Display recently public activity to " + ssn);
+        clogg.logg('d', "Getting recently activity to public sectors");
+        flogg.logg('i', "EventController.getRecentPublicActivity: " +
+                "Display recently public activity to " + ssn);
         return eventService.getRecentPublicActivity(ssn);
     }
 
     @RequestMapping(value="getPostBoks", method = RequestMethod.GET)
     public String getPostBoks(){
         String ssn = eventService.getUserDetails();
-        flogg.logg('i', "EventController.getRecentPublicActivity: Display postbox to " + ssn);
+        clogg.logg('d', "Getting current postbox");
+        flogg.logg('i', "EventController.getPostboks: Display postbox to " + ssn);
         return eventService.getPostBoks(ssn);
     }
 
