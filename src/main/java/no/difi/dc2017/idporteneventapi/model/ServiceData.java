@@ -33,4 +33,12 @@ public class ServiceData {
     public boolean isUsed() {
         return isUsed;
     }
+
+    @Override
+    public String toString(){
+        return "ServiceData{" +
+                "description=\'" + description +
+                "\', isUsed=\'" + isUsed + '\'' +
+                '}';
+    }
 }

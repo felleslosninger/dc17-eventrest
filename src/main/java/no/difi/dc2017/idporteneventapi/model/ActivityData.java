@@ -30,4 +30,13 @@ public class ActivityData {
     public String getIssuer() {
         return issuer;
     }
+
+    @Override
+    public String toString(){
+        return "ActivityData{" +
+                "dateTime=\'" + dateTime +
+                "\', type=\'" + type +
+                "\', issuer=\'" + issuer + '\'' +
+                '}';
+    }
 }

@@ -69,7 +69,7 @@ public class EventService {
             result = new ObjectMapper().readValue(body, HashMap.class);
         } catch (IOException e) {
             flogger.logg('w', "EventService.getUserDetails: User with " + at + " tried to get result, " +
-                  "Something went wrong with IO");
+                  "but something went wrong with the IO");
             clogger.logg('w', "EventService.getUserDetails(73): Can not get result");
         }
 
@@ -87,18 +87,18 @@ public class EventService {
     public String getPostBoks(String ssn) {
         List<Event> postBox = eventData.getPostboks(ssn);
         if (postBox.size() == 0) {
-            flogger.logg('i', "EventService.getPostboks: Revealing that " + ssn + " has no postbox");
+            flogger.logg('i', "EventService.getPostboks: Return no postbox to " + ssn);
             return "";
         }
         Event currentPostBox = postBox.get(0);
         if (currentPostBox.getIssuer().contains("e-boks")) {
-            flogger.logg('i', "EventService.getPostBoks: Revealing " + currentPostBox.getIssuer() + " as postbox to " + ssn);
+            flogger.logg('i', "EventService.getPostBoks: Return " + currentPostBox.getIssuer() + " as postbox to " + ssn);
             return "e-Boks";
         } else if (currentPostBox.getIssuer().contains("digi")) {
-            flogger.logg('i', "EventService.getPostBoks: Revealing " + currentPostBox.getIssuer() + " as postbox to " + ssn);
+            flogger.logg('i', "EventService.getPostBoks: Return " + currentPostBox.getIssuer() + " as postbox to " + ssn);
             return "Digipost";
         } else {
-            flogger.logg('w', "EventService.getPostboks: " + ssn + " tried to get postbox, but got an empty string");
+            flogger.logg('w', "EventService.getPostboks: Return unnamed postbox to " + ssn);
             return "";
         }
 
@@ -131,7 +131,7 @@ public class EventService {
             }
         }
 
-        flogger.logg('i', "EventService.getUnusedAuthTypes: Getting unused authorization types\n Description:" + unusedAuthTypes);
+        flogger.logg('i', "EventService.getUnusedAuthTypes: Return unused authorization types\nDescription of authorization type list: " + unusedAuthTypes);
         return unusedAuthTypes;
     }
 
@@ -148,7 +148,7 @@ public class EventService {
             used.add(eventController.getAuthTypeById(lId));
         });
 
-        flogger.logg('i', "EventService.getUsedServices: Reveal used services\n Description: " + used);
+        flogger.logg('i', "EventService.getUsedServices: Return used services\nDescription of service list: " + used);
         return used;
     }
 
@@ -160,7 +160,6 @@ public class EventService {
         List<Event> events = eventData.getUsedServices(ssn);
         List<Integer> ids = Arrays.asList(51, 510, 605);
         ArrayList<ServiceData> data = new ArrayList<>();
-
         for (int i : ids) {
             LogType logType = eventController.getLogTypeById(i);
             data.add(new ServiceData(logType.getDescription(), false));
@@ -174,8 +173,8 @@ public class EventService {
             }
         }
 
-        flogger.logg('i', "EventService.getUsedServices: Reveal used services to " + ssn +
-                "\n Description: " + data);
+        flogger.logg('i', "EventService.getUsedServices: Return used services to " + ssn +
+                "\nDescription of service list: " + data);
         return data;
     }
     /**
@@ -185,14 +184,14 @@ public class EventService {
         List<Event> events = eventData.getRecentUserActivity(ssn);
 
         ArrayList<ActivityData> activityList = new ArrayList<>();
-
+        ArrayList<String> activitydescription = new ArrayList<String>();
         for (Event event : events) {
             String authType = eventController.getAuthTypeById(event.getAuthType()).getValue();
             activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
         }
 
-        flogger.logg('i', "EventService.getRecentUserActivity: Reveal recent user activity to " + ssn
-         + "\n Description: " + activityList);
+        flogger.logg('i', "EventService.getRecentUserActivity: Return recent user activity to " + ssn
+         + "\nDescription of activity list: " + activityList);
         return activityList;
     }
 
@@ -203,14 +202,14 @@ public class EventService {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
 
         ArrayList<ActivityData> activityList = new ArrayList<>();
-
+        ArrayList<String> activitydescription = new ArrayList<String>();
         for (Event event : events) {
             String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
             activityList.add(new ActivityData(event.getDateTimeString(), logType, event.getIssuer()));
         }
 
-        flogger.logg('i', "EventService.getRecentPublicActivity: Reveal recent public activity to " + ssn
-         + "\n Description: " + activityList);
+        flogger.logg('i', "EventService.getRecentPublicActivity: Return recent public activity to " + ssn
+         + "\nDescription of activity list: " + activityList);
         return activityList;
     }
 }
