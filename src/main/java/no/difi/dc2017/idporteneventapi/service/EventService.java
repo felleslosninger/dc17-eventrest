@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
@@ -64,25 +65,35 @@ public class EventService {
 
 
         String body = response.getBody();
-        HashMap<String, String> result = null;
+        HashMap<String, String> result;
         try {
-            result = new ObjectMapper().readValue(body, HashMap.class);
+             result = new ObjectMapper().readValue(body, new TypeReference<HashMap<String, Object>>(){});
         } catch (IOException e) {
             flogger.logg('w', "EventService.getUserDetails: User with " + at + " tried to get result, " +
                   "but something went wrong with the IO");
             clogger.logg('w', "EventService.getUserDetails(73): Can not get result");
+            return "";
         }
 
-        flogger.logg('i', "EventService.getUserDetails: " + result.get("pid")  +
-            " gets user details with token " + at );
+        String pid;
+        if(result != null) {
+            pid = result.get("pid");
+        } else {
+            clogger.logg('i', "EventService.getUserDetails(73): Can not get result");
+            flogger.logg('w', "EventService.getUserDetails: User with token " + at
+                    + " tried to get pid, but were not sucessful");
+            return "";
+        }
 
+        flogger.logg('i', "EventService.getUserDetails: " + pid +
+                    " gets user details with token " + at);
         // return content from krr
-        return result.get("pid");
+        return pid;
     }
 
     /**
     * get postboks to the user with social security number
-    * @param ssn
+    * @param ssn String
     * */
     public String getPostBoks(String ssn) {
         List<Event> postBox = eventData.getPostboks(ssn);
@@ -109,10 +120,10 @@ public class EventService {
 * */
     public List<AuthType> getUnusedAuthTypes() {
         List<AuthType> allAuthTypes = eventController.getAllAuthTypes();
-        List<Integer> usedauthTypeIds = new ArrayList<Integer>();
-        List<Integer> authTypeIds = new ArrayList<Integer>();
+        List<Integer> usedauthTypeIds = new ArrayList<>();
+        List<Integer> authTypeIds = new ArrayList<>();
         List<Object[]> allUsedAuthTypes = eventController.getMostUsedAuthTypes();
-        List<AuthType> unusedAuthTypes = new ArrayList<AuthType>();
+        List<AuthType> unusedAuthTypes = new ArrayList<>();
 
         allUsedAuthTypes.forEach(authType -> {
             Integer authId = (Integer) authType[0];
@@ -141,7 +152,7 @@ public class EventService {
      * */
     public List<AuthType> getUsedServices() {
         List<Object[]> mostUsed = eventController.getMostUsedAuthTypes();
-        List<AuthType> used = new ArrayList<AuthType>();
+        List<AuthType> used = new ArrayList<>();
         mostUsed.forEach(at -> {
             Integer id = (Integer) at[0];
             Long lId = id.longValue();
@@ -159,7 +170,7 @@ public class EventService {
 
         List<Event> events = eventData.getUsedServices(ssn);
         List<Integer> ids = Arrays.asList(51, 510, 605);
-        ArrayList<ServiceData> data = new ArrayList<ServiceData>();
+        ArrayList<ServiceData> data = new ArrayList<>();
         for (int i : ids) {
             LogType logType = eventController.getLogTypeById(i);
             data.add(new ServiceData(logType.getDescription(), false));
@@ -183,7 +194,7 @@ public class EventService {
     public List<ActivityData> getRecentUserActivity(String ssn) {
         List<Event> events = eventData.getRecentUserActivity(ssn);
 
-        ArrayList<ActivityData> activityList = new ArrayList<ActivityData>();
+        ArrayList<ActivityData> activityList = new ArrayList<>();
         for (Event event : events) {
             String authType = eventController.getAuthTypeById(event.getAuthType()).getValue();
             activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
@@ -200,7 +211,7 @@ public class EventService {
     public List<ActivityData> getRecentPublicActivity(String ssn) {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
 
-        ArrayList<ActivityData> activityList = new ArrayList<ActivityData>();
+        ArrayList<ActivityData> activityList = new ArrayList<>();
         for (Event event : events) {
             String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
             activityList.add(new ActivityData(event.getDateTimeString(), logType, event.getIssuer()));
