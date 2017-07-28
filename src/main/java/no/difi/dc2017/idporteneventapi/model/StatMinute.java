@@ -77,4 +77,22 @@ public class StatMinute {
     public int getCnt() {
         return cnt;
     }
+
+    @Override
+    public String toString(){
+        return "StatMinute{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\', minute=\'" + minute +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
+    }
 }

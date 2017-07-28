@@ -29,8 +29,8 @@ public class AuthType {
     @Override
     public String toString() {
         return "AuthType{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                '}';
+                "id=\'" + id +
+                "\', value=\'" + value +
+                "\'}";
     }
 }

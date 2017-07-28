@@ -36,7 +36,7 @@ public class ActivityData {
         return "ActivityData{" +
                 "dateTime=\'" + dateTime +
                 "\', type=\'" + type +
-                "\', issuer=\'" + issuer + '\'' +
-                '}';
+                "\', issuer=\'" + issuer +
+                "\'}";
     }
 }

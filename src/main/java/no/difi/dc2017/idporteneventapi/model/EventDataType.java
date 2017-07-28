@@ -28,9 +28,9 @@ public class EventDataType {
     @Override
     public String toString() {
         return "EventDataType{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                '}';
+                "id=\'" + id +
+                "\', value=\'" + value +
+                "\'}";
     }
 
 }

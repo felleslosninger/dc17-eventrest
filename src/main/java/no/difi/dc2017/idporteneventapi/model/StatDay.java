@@ -63,4 +63,21 @@ public class StatDay {
     public int getCnt() {
         return cnt;
     }
+
+    @Override
+    public String toString(){
+        return "StatDay{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
+
+    }
 }

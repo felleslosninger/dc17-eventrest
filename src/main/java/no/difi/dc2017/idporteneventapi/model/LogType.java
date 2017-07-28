@@ -34,9 +34,9 @@ public class LogType {
     @Override
     public String toString() {
         return "LogType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+                "id=\'" + id +
+                "\', name=\'" + name +
+                "\', description=\'" + description +
+                "\'}";
     }
 }

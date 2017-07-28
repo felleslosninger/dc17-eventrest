@@ -38,9 +38,9 @@ public class EventData {
     public String toString() {
         return "EventData{" +
                 "id=" + id +
-                ", eventId=" + eventId +
-                ", eventDataType=" + eventDataType +
-                ", value='" + value + '\'' +
-                '}';
+                "\', eventId=\'" + eventId +
+                "\', eventDataType=\'" + eventDataType +
+                "\', value='" + value +
+                "\'}";
     }
 }

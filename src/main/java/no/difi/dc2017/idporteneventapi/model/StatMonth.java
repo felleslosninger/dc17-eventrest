@@ -59,4 +59,19 @@ public class StatMonth {
     public int getCnt() {
         return cnt;
     }
+
+    @Override
+    public String toString(){
+        return "StatMonth{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
+    }
 }

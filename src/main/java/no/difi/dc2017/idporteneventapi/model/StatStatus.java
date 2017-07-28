@@ -42,4 +42,15 @@ public class StatStatus {
     public int getConfiguredLimit() {
         return configuredLimit;
     }
+
+    @Override
+    public String toString(){
+        return "StatStatus{" +
+                "id=\'" + id +
+                "\', eventID=\'" + eventID +
+                "\', completedTime\'" + completedTime +
+                "\', runMillis\'" +runMillis +
+                "\', configuredLimit\'" + configuredLimit +
+                "\'}";
+    }
 }

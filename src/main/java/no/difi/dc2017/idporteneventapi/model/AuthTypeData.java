@@ -32,9 +32,9 @@ public class AuthTypeData {
     @Override
     public String toString() {
         return "AuthTypeData{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                ", used=" + used +
-                '}';
+                "\'id=\'" + id +
+                "\', value=\'" + value +
+                "\', used=\'" + used +
+                "\'}'";
     }
 }

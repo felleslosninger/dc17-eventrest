@@ -69,4 +69,18 @@ public class SnapshotStatHour {
     public int getCnt() {
         return cnt;
     }
+
+    @Override
+    public String toString(){
+        return "SnapshotStatHour{" +
+                "id=\'" + id +
+                "\', reportType=\'" + reportType +
+                "\', reportLine=\'" + reportLine +
+                "\', reportLineText=\'" + reportLineText +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\'}";
+    }
 }

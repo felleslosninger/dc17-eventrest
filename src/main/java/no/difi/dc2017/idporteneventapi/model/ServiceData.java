@@ -38,7 +38,7 @@ public class ServiceData {
     public String toString(){
         return "ServiceData{" +
                 "description=\'" + description +
-                "\', isUsed=\'" + isUsed + '\'' +
-                '}';
+                "\', isUsed=\'" + isUsed +
+                "\'}";
     }
 }

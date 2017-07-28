@@ -162,20 +162,20 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", year=" + year +
-                ", month=" + month +
-                ", day=" + day +
-                ", hour=" + hour +
-                ", minute=" + minute +
-                ", second=" + second +
-                ", ssn='" + ssn + '\'' +
-                ", logType=" + logType +
-                ", authType=" + authType +
-                ", issuer='" + issuer + '\'' +
-                ", onBehalfOf='" + onBehalfOf + '\'' +
-                ", reqForceAuth=" + reqForceAuth +
-                ", reqAuthLevel=" + reqAuthLevel +
-                '}';
+                "id=\'" + id +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\', minute=\'" + minute +
+                "\', second=\'" + second +
+                "\', ssn=\'" + ssn + '\'' +
+                "\', logType=\'" + logType +
+                "\', authType=\'" + authType +
+                "\', issuer=\'" + issuer + '\'' +
+                "\', onBehalfOf=\'" + onBehalfOf + '\'' +
+                "\', reqForceAuth=\'" + reqForceAuth +
+                "\', reqAuthLevel=\'" + reqAuthLevel +
+                "\'}";
     }
 }

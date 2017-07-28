@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import no.difi.dc2017.idporteneventapi.controllers.EventController;
 import no.difi.dc2017.idporteneventapi.data.EventRepository;
 import no.difi.dc2017.idporteneventapi.model.*;
+import org.omg.PortableServer.SERVANT_RETENTION_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -63,8 +64,7 @@ public class EventService {
 
 
         String body = response.getBody();
-        HashMap<String, String> result =
-                null;
+        HashMap<String, String> result = null;
         try {
             result = new ObjectMapper().readValue(body, HashMap.class);
         } catch (IOException e) {
@@ -109,10 +109,10 @@ public class EventService {
 * */
     public List<AuthType> getUnusedAuthTypes() {
         List<AuthType> allAuthTypes = eventController.getAllAuthTypes();
-        List<Integer> usedauthTypeIds = new ArrayList<>();
-        List<Integer> authTypeIds = new ArrayList<>();
+        List<Integer> usedauthTypeIds = new ArrayList<Integer>();
+        List<Integer> authTypeIds = new ArrayList<Integer>();
         List<Object[]> allUsedAuthTypes = eventController.getMostUsedAuthTypes();
-        List<AuthType> unusedAuthTypes = new ArrayList<>();
+        List<AuthType> unusedAuthTypes = new ArrayList<AuthType>();
 
         allUsedAuthTypes.forEach(authType -> {
             Integer authId = (Integer) authType[0];
@@ -141,7 +141,7 @@ public class EventService {
      * */
     public List<AuthType> getUsedServices() {
         List<Object[]> mostUsed = eventController.getMostUsedAuthTypes();
-        List<AuthType> used = new ArrayList<>();
+        List<AuthType> used = new ArrayList<AuthType>();
         mostUsed.forEach(at -> {
             Integer id = (Integer) at[0];
             Long lId = id.longValue();
@@ -159,7 +159,7 @@ public class EventService {
 
         List<Event> events = eventData.getUsedServices(ssn);
         List<Integer> ids = Arrays.asList(51, 510, 605);
-        ArrayList<ServiceData> data = new ArrayList<>();
+        ArrayList<ServiceData> data = new ArrayList<ServiceData>();
         for (int i : ids) {
             LogType logType = eventController.getLogTypeById(i);
             data.add(new ServiceData(logType.getDescription(), false));
@@ -183,8 +183,7 @@ public class EventService {
     public List<ActivityData> getRecentUserActivity(String ssn) {
         List<Event> events = eventData.getRecentUserActivity(ssn);
 
-        ArrayList<ActivityData> activityList = new ArrayList<>();
-        ArrayList<String> activitydescription = new ArrayList<String>();
+        ArrayList<ActivityData> activityList = new ArrayList<ActivityData>();
         for (Event event : events) {
             String authType = eventController.getAuthTypeById(event.getAuthType()).getValue();
             activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
@@ -201,8 +200,7 @@ public class EventService {
     public List<ActivityData> getRecentPublicActivity(String ssn) {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
 
-        ArrayList<ActivityData> activityList = new ArrayList<>();
-        ArrayList<String> activitydescription = new ArrayList<String>();
+        ArrayList<ActivityData> activityList = new ArrayList<ActivityData>();
         for (Event event : events) {
             String logType = eventController.getLogTypeById(event.getLogType()).getDescription();
             activityList.add(new ActivityData(event.getDateTimeString(), logType, event.getIssuer()));

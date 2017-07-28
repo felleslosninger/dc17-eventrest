@@ -54,4 +54,18 @@ public class StatYear {
     public int getCnt() {
         return cnt;
     }
+
+    @Override
+    public String toString(){
+        return "StatYear{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
+    }
 }
