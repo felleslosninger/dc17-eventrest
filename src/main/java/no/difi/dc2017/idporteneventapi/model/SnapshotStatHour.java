@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+* Get report type, line and linetext from sql-databasis.
+* Get year, month, day, issuer, onBehalfOf and Cnt from sql-databasis
+* */
 @Entity
 public class SnapshotStatHour {
 
@@ -65,5 +68,19 @@ public class SnapshotStatHour {
 
     public int getCnt() {
         return cnt;
+    }
+
+    @Override
+    public String toString(){
+        return "SnapshotStatHour{" +
+                "id=\'" + id +
+                "\', reportType=\'" + reportType +
+                "\', reportLine=\'" + reportLine +
+                "\', reportLineText=\'" + reportLineText +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\'}";
     }
 }

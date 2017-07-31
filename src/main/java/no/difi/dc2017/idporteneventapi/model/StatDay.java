@@ -6,7 +6,9 @@ import javax.persistence.Id;
 
 /**
  * Created by camp-ano on 20.06.2017.
- */
+ *
+ * Get id, logtype, year, month, day and issuer from sql-databasis.
+ * */
 public class StatDay {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,5 +62,22 @@ public class StatDay {
 
     public int getCnt() {
         return cnt;
+    }
+
+    @Override
+    public String toString(){
+        return "StatDay{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
+
     }
 }

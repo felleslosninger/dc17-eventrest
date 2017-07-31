@@ -28,7 +28,7 @@ public class Event {
     private int hour;
     private int minute;
     private int second;
-    private String ssn;
+    private String ssn; //social security number
     private int logType;
     private int authType;
     private String issuer;
@@ -162,20 +162,20 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", year=" + year +
-                ", month=" + month +
-                ", day=" + day +
-                ", hour=" + hour +
-                ", minute=" + minute +
-                ", second=" + second +
-                ", ssn='" + ssn + '\'' +
-                ", logType=" + logType +
-                ", authType=" + authType +
-                ", issuer='" + issuer + '\'' +
-                ", onBehalfOf='" + onBehalfOf + '\'' +
-                ", reqForceAuth=" + reqForceAuth +
-                ", reqAuthLevel=" + reqAuthLevel +
-                '}';
+                "id=\'" + id +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\', minute=\'" + minute +
+                "\', second=\'" + second +
+                "\', ssn=\'" + ssn + '\'' +
+                "\', logType=\'" + logType +
+                "\', authType=\'" + authType +
+                "\', issuer=\'" + issuer + '\'' +
+                "\', onBehalfOf=\'" + onBehalfOf + '\'' +
+                "\', reqForceAuth=\'" + reqForceAuth +
+                "\', reqAuthLevel=\'" + reqAuthLevel +
+                "\'}";
     }
 }

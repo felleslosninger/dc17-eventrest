@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+* Get id, logtype, year, month, day and issuer from sql-databasis.
+* */
 @Entity
 public class StatYear {
 
@@ -51,5 +53,19 @@ public class StatYear {
 
     public int getCnt() {
         return cnt;
+    }
+
+    @Override
+    public String toString(){
+        return "StatYear{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
     }
 }

@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ *  get id, name and description for the log.
+ */
 @Entity
 public class LogType {
 
@@ -31,9 +34,9 @@ public class LogType {
     @Override
     public String toString() {
         return "LogType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+                "id=\'" + id +
+                "\', name=\'" + name +
+                "\', description=\'" + description +
+                "\'}";
     }
 }

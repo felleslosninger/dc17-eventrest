@@ -23,3 +23,5 @@ Rest api for Eventloggen til IDporten.
 * /getRecentUserActivity/ - Retunerer nylig aktivitet for en bruker
 * /getRecentPublicActivity/ - Retunerer nylig aktivitet som "det offentlige" har hentet om en person
 * /getPostBoks/ - Retunerer hvilken postboks brukeren har ("e-Boks" eller "Digipost") eller en tom streng
+
+

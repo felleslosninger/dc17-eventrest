@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+* Get the id and value for the authorization type
+* */
 @Entity
 public class AuthType {
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,8 +29,8 @@ public class AuthType {
     @Override
     public String toString() {
         return "AuthType{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                '}';
+                "id=\'" + id +
+                "\', value=\'" + value +
+                "\'}";
     }
 }

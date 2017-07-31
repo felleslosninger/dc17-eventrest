@@ -7,8 +7,8 @@ import javax.persistence.Id;
 
 /**
  * Created by camp-ano on 20.06.2017.
- */
-
+ * Get id, logtype, year, month, day and issuer from sql-databasis.
+ * */
 @Entity
 public class StatHour {
 
@@ -64,5 +64,22 @@ public class StatHour {
 
     public int getCnt() {
         return cnt;
+    }
+
+    @Override
+    public String toString(){
+        return "StatHour{" +
+                "id=\'" + id +
+                "\', logType=\'" + logType +
+                "\', year=\'" + year +
+                "\', month=\'" + month +
+                "\', day=\'" + day +
+                "\', hour=\'" + hour +
+                "\', issuer=\'" + issuer +
+                "\', onBehalfOf=\'" + onBehalfOf +
+                "\', authType=\'" + authType +
+                "\', authLevel=\'" + authLevel +
+                "\', cnt=\'" + cnt +
+                "\'}";
     }
 }

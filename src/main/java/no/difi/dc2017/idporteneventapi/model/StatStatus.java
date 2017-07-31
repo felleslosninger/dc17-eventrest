@@ -7,8 +7,8 @@ import javax.persistence.Id;
 
 /**
  * Created by camp-oob on 20.06.2017.
- */
-
+ * Get id, logtype, year, month, day and issuer from sql-databasis.
+ * */
 @Entity
 public class StatStatus {
 
@@ -41,5 +41,16 @@ public class StatStatus {
 
     public int getConfiguredLimit() {
         return configuredLimit;
+    }
+
+    @Override
+    public String toString(){
+        return "StatStatus{" +
+                "id=\'" + id +
+                "\', eventID=\'" + eventID +
+                "\', completedTime\'" + completedTime +
+                "\', runMillis\'" +runMillis +
+                "\', configuredLimit\'" + configuredLimit +
+                "\'}";
     }
 }

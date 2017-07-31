@@ -82,24 +82,43 @@
 			<optional>true</optional>
 		</dependency>
 
-        <!-- Logging -->
+
+		<!-- logging -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.25</version>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.8.0-alpha2</version>
 		</dependency>
-	</dependencies>
 
+
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5</version>
+				<configuration>
+					<compilerArgument>
+						-Xlint:unchecked
+					</compilerArgument>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

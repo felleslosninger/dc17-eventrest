@@ -2,7 +2,9 @@ package no.difi.dc2017.idporteneventapi.model;
 
 /**
  * Created by camp-ano on 10.07.2017.
- */
+ *
+ * Get the id, value and is used at the authtypedata.
+ * */
 public class AuthTypeData {
 
     private long id;
@@ -30,9 +32,9 @@ public class AuthTypeData {
     @Override
     public String toString() {
         return "AuthTypeData{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                ", used=" + used +
-                '}';
+                "\'id=\'" + id +
+                "\', value=\'" + value +
+                "\', used=\'" + used +
+                "\'}'";
     }
 }
