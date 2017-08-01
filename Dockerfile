@@ -7,7 +7,7 @@ EXPOSE 4500
 ADD . $MAVEN_HOME
 
 RUN cd $MAVEN_HOME \
- && mvn -B clean package \
+ && mvn -B clean package -Dmaven.test.skip\
  && app=$(ls $MAVEN_HOME/target/*.jar | head -1) \
  && mv $app /app.jar \
  && rm -r $MAVEN_HOME
