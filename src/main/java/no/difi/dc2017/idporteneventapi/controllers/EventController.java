@@ -44,10 +44,11 @@ public class EventController {
     FileLogger flogger = new FileLogger();
     ConsoleLogger clogger = new ConsoleLogger();
 
-    public void loggString(char key, String methodname, Principal principal){
+    public void loggString(char key, String methodname, String description, Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
         flogger.logg(key, methodname + ": " +
-            "authorizationToken=\'" + userInfo.get("authorization") +
+                description +
+            ", authorizationToken=\'" + userInfo.get("authorization") +
             "\', sub=\'" + userInfo.get("sub") +
                 "\'clientId=\'" + principal.getName() + "\'");
     }
@@ -56,7 +57,7 @@ public class EventController {
     @RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
     public Event event(@PathVariable long id, Principal principal){
         Event ev = eventData.findOne(id);
-        loggString('i', "EventController.event", principal);
+        loggString('i', "EventController.event", "return event", principal);
         return ev;
     }
 
@@ -64,7 +65,7 @@ public class EventController {
     @RequestMapping(value = "/eventBySsn")
     public Collection<Event> eventBySsn(Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.eventBySsn", principal);
+        loggString('i', "EventController.eventBySsn","return 10 latest events by ssn", principal);
         return eventData.findFirst10BySsnOrderByIdDesc(userInfo.get("ssn"));
     }
 
@@ -72,68 +73,68 @@ public class EventController {
     public Page<Event> getLatestEvents(Principal principal){
         PageRequest limit = new PageRequest(1,10 , Sort.Direction.DESC,"hour");
         Page<Event> evList = eventData.findAll(limit);
-        loggString('i', "EventController.getLatestEvents", principal);
+        loggString('i', "EventController.getLatestEvents", "return 10 latest events sorted by time", principal);
         return evList;
     }
 
     @RequestMapping(value = "getAuthTypeById/{id}", method = RequestMethod.GET)
     public AuthType getAuthTypeById(@PathVariable long id, Principal principal){
 
-        loggString('i', "EventController.getAuthTypeById", principal);
+        loggString('i', "EventController.getAuthTypeById", "return authorization type by id", principal);
         return authTypeData.findOne(id);
     }
 
     @RequestMapping(value = "getAllAuthTypes", method = RequestMethod.GET)
     public List<AuthType> getAllAuthTypes(Principal principal){
 
-        loggString('i', "EventController.getAllAuthTypes", principal);
+        loggString('i', "EventController.getAllAuthTypes", "return all authorization types", principal);
         return authTypeData.findAll();
     }
 
     @RequestMapping(value = "getMostUsedAuthTypes", method = RequestMethod.GET)
     public List<Object[]> getMostUsedAuthTypes(Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.getMostUsedAuthTypes", principal);
+        loggString('i', "EventController.getMostUsedAuthTypes", "return used authorization types and how many each of them is used", principal);
         return eventData.getMostUsedAuthTypes(userInfo.get("ssn"));
     }
 
     @RequestMapping(value = "getUnusedAuthTypes", method = RequestMethod.GET)
     public List<AuthType> getUnusedAuthTypes(Principal principal){
-        loggString('i', "EventController.getUnusedAuthTypes", principal);
+        loggString('i', "EventController.getUnusedAuthTypes", "return unused authorization types", principal);
         return eventService.getUnusedAuthTypes(principal);
     }
 
     @RequestMapping(value = "getLogTypeById/{id}", method = RequestMethod.GET)
     public LogType getLogTypeById(@PathVariable long id, Principal principal){
-        loggString('i', "EventController.getLogTypeById", principal);
+        loggString('i', "EventController.getLogTypeById", "return log type by id", principal);
         return logTypeData.findOne(id);
     }
 
     @RequestMapping(value = "getUsedServices", method = RequestMethod.GET)
     public List<ServiceData> getUserServices(Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.getUsedServices", principal);
+        loggString('i', "EventController.getUsedServices", "return used and non-used services", principal);
         return eventService.getUsedServices(userInfo.get("ssn"), principal);
     }
 
     @RequestMapping(value = "getRecentUserActivity", method = RequestMethod.GET)
     public List<ActivityData> getRecentUserActivity(Principal principal) {
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.getRecentUserActivity", principal);
+        loggString('i', "EventController.getRecentUserActivity", "return recent user activity", principal);
         return eventService.getRecentUserActivity(userInfo.get("ssn"), principal);
     }
 
     @RequestMapping(value = "getRecentPublicActivity", method = RequestMethod.GET)
     public List<ActivityData> getRecentPublicActivity(Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.getRecentPublicActivity", principal);
+        loggString('i', "EventController.getRecentPublicActivity", "return recent user activity from the public", principal);
         return eventService.getRecentPublicActivity(userInfo.get("ssn"), principal);
     }
 
     @RequestMapping(value="getPostBoks", method = RequestMethod.GET)
     public String getPostBoks(Principal principal){
         HashMap<String, String> userInfo = eventService.getUserDetails();
-        loggString('i', "EventController.getPostBoks", principal);
+        loggString('i', "EventController.getPostBoks", "return the name of the post box to the user", principal);
         return eventService.getPostBoks(userInfo.get("ssn"));
     }
 

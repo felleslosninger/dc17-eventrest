@@ -25,4 +25,4 @@ nbdist/
 
 
 ## General ##
-application.yml
+logs/
