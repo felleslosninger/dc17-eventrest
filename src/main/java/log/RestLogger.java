@@ -1,16 +1,16 @@
-package log.FileLogger;
-
+package log;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * Created by camp-cms on 24.07.2017.
+ * Created by camp-cms on 01.08.2017.
  */
+public class RestLogger {
+    protected final Logger logger;
 
-public class FileLogger {
-    private final Logger logger = LoggerFactory.getLogger("FileLogger");
+    public RestLogger(Logger l){
+        logger = l;
+    }
 
-    public boolean loggToFile(char key, String sentence) {
+    public boolean logg(char key, String sentence) {
         switch (key) {
             case 'd':
                 logger.debug(sentence);
@@ -25,7 +25,6 @@ public class FileLogger {
                 logger.error(sentence);
                 break;
             default:
-                System.out.println("Logger can not find key");
                 return false;
         }
         return true;
