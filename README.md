@@ -11,7 +11,7 @@ Rest api for Eventloggen til IDporten.
    
 # Endepunkter
 
-* /event/{id} - 06086900163med {id}
+* /event/{id} - Retunerer event med {id}
 * /eventBySsn/ - Retunerer siste 10 Events for en person
 * /getLatestEvents/ - Retunerer siste 10 Events sortert på time
 * /getAuthTypeById/{id} - Retunerer autentiseringstype med {id}
