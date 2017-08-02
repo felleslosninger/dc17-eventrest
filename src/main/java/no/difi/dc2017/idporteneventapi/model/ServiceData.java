@@ -2,7 +2,10 @@ package no.difi.dc2017.idporteneventapi.model;
 
 /**
  * Created by camp-oob on 23.06.2017.
- */
+ *
+ * Set description and usagestatus for the servicedata.
+ * Get the description and check if servicedata is used.
+ **/
 public class ServiceData {
 
     private String description;

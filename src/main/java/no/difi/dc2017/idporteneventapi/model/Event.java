@@ -28,7 +28,7 @@ public class Event {
     private int hour;
     private int minute;
     private int second;
-    private String ssn;
+    private String ssn; //social security number
     private int logType;
     private int authType;
     private String issuer;
