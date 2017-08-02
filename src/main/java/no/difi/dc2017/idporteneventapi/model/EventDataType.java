@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ *  Get the id and value for the eventdata.
+ */
 @Entity
 public class EventDataType {
 

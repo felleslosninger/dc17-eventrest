@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+/*
+* Get report type, line and linetext from sql-databasis.
+* Get year, month, day, issuer, onBehalfOf and Cnt from sql-databasis
+* */
 @Entity
 public class SnapshotStatHour {
 

@@ -4,6 +4,8 @@ import java.util.Date;
 
 /**
  * Created by camp-oob on 27.06.2017.
+ *
+ *  Get the datatime, type and issuer for the activity data
  */
 public class ActivityData {
 
