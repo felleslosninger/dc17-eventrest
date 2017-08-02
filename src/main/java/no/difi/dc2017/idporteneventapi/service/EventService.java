@@ -1,4 +1,5 @@
 package no.difi.dc2017.idporteneventapi.service;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import no.difi.dc2017.idporteneventapi.controllers.EventController;
@@ -13,13 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.*;
-import java.util.stream.IntStream;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by camp-oob on 22.06.2017.
@@ -37,21 +36,12 @@ public class EventService {
     OAuth2ClientContext oauth2ClientContext;
     private final static String URI = "https://oidc-ver2.difi.no/idporten-oidc-provider/userinfo";
 
-
-
-
     /**
-    * get personal id
-    * */
+     * get personal id
+     */
     public HashMap<String, String> getUserDetails() {
-        // read access token from principal
         String at = oauth2ClientContext.getAccessToken().toString();
 
-        //String idt = oauth2ClientContext.getAccessToken().getAdditionalInformation().toString();
-        //Make api request to krr endpoint with access token as Authorization http header using RestTemplate
-        //Header:
-        //Authorization: Bearer <access_token>
-        //https://oidc-ver2.difi.no/kontaktinfo-oauth2-server/rest/v1/person
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + at);
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -68,13 +58,14 @@ public class EventService {
         HashMap<String, String> result =
                 null;
         try {
-            result = new ObjectMapper().readValue(body, new TypeReference<HashMap<String, Object>>(){});
+            result = new ObjectMapper().readValue(body, new TypeReference<HashMap<String, Object>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         HashMap<String, String> userInfo = new HashMap<String, String>();
-        if(result != null){
+        if (result != null) {
             userInfo.put("ssn", result.get("pid"));
             userInfo.put("sub", result.get("sub"));
             userInfo.put("authorization", at);
@@ -84,9 +75,10 @@ public class EventService {
     }
 
     /**
-    * get postboks to the user with social security number
-    * @param ssn
-    * */
+     * get postboks to the user with social security number
+     *
+     * @param ssn
+     */
     public String getPostBoks(String ssn) {
         List<Event> postBox = eventData.getPostboks(ssn);
         if (postBox.size() == 0) {
@@ -103,9 +95,9 @@ public class EventService {
 
     }
 
-/**
-*   Get the authorization types that the user do not use
-* */
+    /**
+     * Get the authorization types that the user do not use
+     */
     public List<AuthType> getUnusedAuthTypes(Principal principal) {
         List<AuthType> allAuthTypes = eventController.getAllAuthTypes(principal);
         List<Integer> usedauthTypeIds = new ArrayList<>();
@@ -135,7 +127,7 @@ public class EventService {
 
     /**
      * get all services the user use according to his/hers id
-     * */
+     */
     public List<AuthType> getUsedServices(Principal principal) {
         List<Object[]> mostUsed = eventController.getMostUsedAuthTypes(principal);
         List<AuthType> used = new ArrayList<>();
@@ -144,14 +136,12 @@ public class EventService {
             Long lId = id.longValue();
             used.add(eventController.getAuthTypeById(lId, principal));
         });
-
         return used;
-
     }
 
     /**
      * get all services the user use according to his/hers social security number
-     * */
+     */
     public List<ServiceData> getUsedServices(String ssn, Principal principal) {
 
         List<Event> events = eventData.getUsedServices(ssn);
@@ -162,7 +152,6 @@ public class EventService {
             LogType logType = eventController.getLogTypeById(i, principal);
             data.add(new ServiceData(logType.getDescription(), false));
         }
-
         for (Event ev : events) {
             boolean isUsed = false;
             int logType = ev.getLogType();
@@ -170,31 +159,28 @@ public class EventService {
                 data.get(ids.indexOf(logType)).setUsed(true);
             }
         }
-
         return data;
     }
+
     /**
      * get all of the user activity with data and time according to his/hers social security number
-     * */
+     */
     public List<ActivityData> getRecentUserActivity(String ssn, Principal principal) {
         List<Event> events = eventData.getRecentUserActivity(ssn);
-
         ArrayList<ActivityData> activityList = new ArrayList<>();
 
         for (Event event : events) {
             String authType = eventController.getAuthTypeById(event.getAuthType(), principal).getValue();
             activityList.add(new ActivityData(event.getDateTimeString(), authType, event.getIssuer()));
         }
-
         return activityList;
     }
 
     /**
      * get all of the public activity with data and time according to his/hers social security number
-     * */
+     */
     public List<ActivityData> getRecentPublicActivity(String ssn, Principal principal) {
         List<Event> events = eventData.getRecentPublicActivity(ssn);
-
         ArrayList<ActivityData> activityList = new ArrayList<>();
 
         for (Event event : events) {

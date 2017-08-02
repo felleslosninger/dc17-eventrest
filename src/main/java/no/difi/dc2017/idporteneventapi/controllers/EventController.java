@@ -1,10 +1,9 @@
 package no.difi.dc2017.idporteneventapi.controllers;
 
-import java.security.Principal;
-import java.util.*;
-import log.*;
-
+import log.ConsoleLogger;
+import log.FileLogger;
 import no.difi.dc2017.idporteneventapi.data.AuthTypeRepository;
+import no.difi.dc2017.idporteneventapi.data.EventRepository;
 import no.difi.dc2017.idporteneventapi.data.LogTypeRepository;
 import no.difi.dc2017.idporteneventapi.data.StatYearRepository;
 import no.difi.dc2017.idporteneventapi.model.*;
@@ -14,18 +13,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import no.difi.dc2017.idporteneventapi.data.EventRepository;
-
-/*Principal*/
-import java.security.Principal;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-/** security holder **/
-import org.springframework.security.oauth2.provider.ClientDetails;
+import java.security.Principal;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+
+/*Principal*/
+/**
+ * security holder
+ **/
 
 @RestController
 public class EventController {
